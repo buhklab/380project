@@ -12,9 +12,8 @@ package com.mycompany.project380.model;
 public class NewClass {
 
     public void greeting() {
-        System.out.println("Hello, World!");
+        System.out.println("BACKUP");
         // from carlo 1633
-        System.out.println("from carlo 1750");
 
     }
 }
