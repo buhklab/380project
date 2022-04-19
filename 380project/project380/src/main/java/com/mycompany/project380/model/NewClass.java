@@ -12,6 +12,6 @@ package com.mycompany.project380.model;
 public class NewClass {
 
     public void greeting() {
-        System.out.println("Hello, World!");
+        System.out.println("Hello, Worlgfgfd!");
     }
 }
