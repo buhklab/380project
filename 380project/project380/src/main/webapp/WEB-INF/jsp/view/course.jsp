@@ -16,33 +16,52 @@
         Hi User!
         <table>
             <tr><th>Lecture</th><th>MC</th></tr>
-            <tr><td>        
+            <tr>
+                <td>        
                     <a href="<c:url value="/CourseMaterialPage">
                         <c:param name="Lecture" value="1" />
-                        </c:url>">Lecture1(Introduction)</a><br /><br /></td><td>
-                    
+                        </c:url>">Lecture1(Introduction)
+                    </a>
+                    <br /><br />
+                </td>
+                <td>
                     <a href="<c:url value="/McPoll">
                         <c:param name="MC" value="1" />
-                        </c:url>">Q1</a><br /><br />
-                </td></tr>
-            <tr><td>        
+                        </c:url>">Q1
+                    </a>
+                    <br /><br />
+                </td>
+            </tr>         
+            <tr>
+                <td>        
                     <a href="<c:url value="/CourseMaterialPage">
                         <c:param name="Lecture" value="2" />
-                        </c:url>">Lecture2(Servlet)</a><br /><br /></td><td>
-                    
+                        </c:url>">Lecture2(Servlet)
+                    </a>
+                    <br /><br />
+                </td>
+                <td>
                     <a href="<c:url value="/McPoll">
                         <c:param name="MC" value="2" />
-                        </c:url>">Q2</a><br /><br />
-                </td></tr>
-            <tr><td>        
+                        </c:url>">Q2
+                    </a>
+                    <br /><br />
+                </td>
+            </tr>            
+            <tr>
+                <td>        
                     <a href= "<c:url value="/CourseMaterialPage">
                         <c:param name="Lecture" value="3" />
-                        </c:url>">Lecture3(JSP)</a><br /><br /></td><td>
-
+                        </c:url>">Lecture3(JSP)
+                    </a>
+                    <br /><br />
+                </td>
+                <td>
                     <a href="<c:url value="/McPoll">
                         <c:param name="MC" value="3" />
                         </c:url>">Q3</a><br /><br />
-                </td></tr>
+                </td>
+            </tr>
         </table>
     </body>
 </html>
