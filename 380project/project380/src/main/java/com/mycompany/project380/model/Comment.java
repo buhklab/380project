@@ -1,6 +1,7 @@
 package com.mycompany.project380.model;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,14 +20,13 @@ public class Comment implements Serializable {
 
     private String content;
 
-    @ManyToOne
-    @JoinColumn(name = "courseID")
-    private long courseID;
+    @Column(name = "courseID")
+    private String courseID;
 
     public Comment() {
     }
 
-    public Comment(long id, String content, long courseID) {
+    public Comment(long id, String content, String courseID) {
         this.id = id;
         this.content = content;
         this.courseID = courseID;
@@ -48,11 +48,11 @@ public class Comment implements Serializable {
         this.content = content;
     }
 
-    public long getCourseID() {
+    public String getCourseID() {
         return courseID;
     }
 
-    public void setCourseID(long courseID) {
+    public void setCourseIDStringint(String courseID) {
         this.courseID = courseID;
     }
 

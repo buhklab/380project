@@ -29,14 +29,13 @@ public class Note implements Serializable {
     @Lob
     private byte[] content;
 
-    @ManyToOne
-    @JoinColumn(name = "courseID")
-    private long courseID;
+    @Column(name = "courseID")
+    private String courseID;
 
     public Note() {
     }
 
-    public Note(long id, String title, String mimeContentType, byte[] content, long courseID) {
+    public Note(long id, String title, String mimeContentType, byte[] content, String courseID) {
         this.id = id;
         this.title = title;
         this.mimeContentType = mimeContentType;
@@ -78,11 +77,11 @@ public class Note implements Serializable {
         this.content = contents;
     }
 
-    public long getCourseID() {
+    public String getCourseID() {
         return courseID;
     }
 
-    public void setCourseID(long courseID) {
+    public void setCourseID(String courseID) {
         this.courseID = courseID;
     }
 }
