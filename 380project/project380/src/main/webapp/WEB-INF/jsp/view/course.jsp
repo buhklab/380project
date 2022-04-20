@@ -19,7 +19,7 @@
             <tr>
                 <td>        
                     <a href="<c:url value="/CourseMaterialPage">
-                        <c:param name="Lecture" value="1" />
+                        <c:param name="LectureNo" value="1" />
                         </c:url>">Lecture1(Introduction)
                     </a>
                     <br /><br />
@@ -35,7 +35,7 @@
             <tr>
                 <td>        
                     <a href="<c:url value="/CourseMaterialPage">
-                        <c:param name="Lecture" value="2" />
+                        <c:param name="LectureNo" value="2" />
                         </c:url>">Lecture2(Servlet)
                     </a>
                     <br /><br />
@@ -51,7 +51,7 @@
             <tr>
                 <td>        
                     <a href= "<c:url value="/CourseMaterialPage">
-                        <c:param name="Lecture" value="3" />
+                        <c:param name="LectureNo" value="3" />
                         </c:url>">Lecture3(JSP)
                     </a>
                     <br /><br />
