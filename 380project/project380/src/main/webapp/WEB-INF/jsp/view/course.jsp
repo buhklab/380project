@@ -1,10 +1,19 @@
+<%-- 
+    Document   : index
+    Created on : 2022/4/20, 下午 09:56:20
+    Author     : TCH
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Index</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
     </head>
-    <body>
+    
+    
+ <body>
         <h1>This is course:S380F</h1>
         Hi User!
         <table>
