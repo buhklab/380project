@@ -12,6 +12,6 @@
         <title>380 project></title>
     </head>
     <body>
-        <h1>Lecture Nmae: <%=request.getAttribute("LectureName")%></h1>
+        <h1>Lecture Nmae: ${LectureName}</h1>
     </body>
 </html>
