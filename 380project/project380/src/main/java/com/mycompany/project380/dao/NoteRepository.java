@@ -4,8 +4,14 @@
  */
 package com.mycompany.project380.dao;
 
-import com.mycompany.project380.model.UserRole;
+import com.mycompany.project380.model.Note;
 import org.springframework.data.jpa.repository.JpaRepository;
-public interface UserRoleRepository extends JpaRepository<UserRole, Integer> {
+
+/**
+ *
+ * @author user
+ */
+public interface NoteRepository extends JpaRepository<Note, Long> {
+    public Note findByCourseIDAndTitle(String courseID, String title);
     
 }
