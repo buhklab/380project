@@ -27,5 +27,27 @@ CREATE TABLE userRoles(
     role VARCHAR(50) NOT NULL,
     PRIMARY KEY (roleId),
     FOREIGN KEY (username) REFERENCES users (username)
+);
+CREATE TABLE course (
+    courseID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    code VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    PRIMARY KEY (courseID)
+);
 
-)
+CREATE TABLE question (
+    questionId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    query VARCHAR(255) NOT NULL,
+    courseID INTEGER NOT NULL,
+    PRIMARY KEY(questionId),
+    FOREIGN KEY (courseID) REFERENCES course (courseID)
+);
+
+CREATE TABLE answer (
+    answerId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    content VARCHAR(255) NOT NULL,
+    voted INTEGER NOT NULL,
+    questionID INTEGER NOT NULL,
+    PRIMARY KEY(answerId),
+    FOREIGN KEY (questionID) REFERENCES question (questionId)
+);
