@@ -33,6 +33,7 @@ public class CourseMaterialPageServlet {
             default:
                 return "course";
         }
+
         return "listLecture";
     }
 }
