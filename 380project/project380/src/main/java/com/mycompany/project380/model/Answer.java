@@ -66,8 +66,4 @@ public class Answer implements Serializable {
         this.questionID = questionID;
         this.voted = voted;
     }
-    
-    
-    
-    
 }

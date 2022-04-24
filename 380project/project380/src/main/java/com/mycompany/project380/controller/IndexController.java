@@ -10,10 +10,9 @@ import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class IndexController {
-/*
-    @GetMapping ("/course")
+
+    @GetMapping
     public String index() {
-        return new RedirectView("/ticket/list", true);
+        return "course";
     }
-*/
 }

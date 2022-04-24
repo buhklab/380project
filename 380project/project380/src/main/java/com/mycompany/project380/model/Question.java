@@ -26,37 +26,21 @@ public class Question implements Serializable {
     @Column(name = "courseID")
     private String courseID;
 
-    @OneToMany(mappedBy = "question", fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Answer> ans = new ArrayList<>();
-
     public Question(long id, String query, String courseID) {
         this.questionId = id;
         this.query = query;
         this.courseID = courseID;
     }
 
-    public List<Answer> getAnswer() {
-        return this.ans;
-    }
-
-    public void setAnswer(List<Answer> answers) {
-        this.ans = answers;
-    }
-
-    public void addAnswer(Answer answer) {
-        ans.add(answer);
-    }
-
     public Question() {
     }
 
-    public long getId() {
+    public long getQuestionId() {
         return questionId;
     }
 
-    public void setId(long id) {
-        this.questionId = id;
+    public void setQuestionId(long questionId) {
+        this.questionId = questionId;
     }
 
     public String getQuery() {
@@ -74,13 +58,4 @@ public class Question implements Serializable {
     public void setCourseID(String courseID) {
         this.courseID = courseID;
     }
-
-    public List<Answer> getAns() {
-        return ans;
-    }
-
-    public void setAns(List<Answer> ans) {
-        this.ans = ans;
-    }
-
 }
