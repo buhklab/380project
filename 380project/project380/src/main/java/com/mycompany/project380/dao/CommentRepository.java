@@ -4,8 +4,10 @@
  */
 package com.mycompany.project380.dao;
 
-import com.mycompany.project380.model.UserRole;
+import com.mycompany.project380.model.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
-public interface UserRoleRepository extends JpaRepository<UserRole, Integer> {
+
+
+public interface CommentRepository extends JpaRepository<Comment, Long> {
     
 }
