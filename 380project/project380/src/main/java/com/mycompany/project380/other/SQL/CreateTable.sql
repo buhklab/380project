@@ -4,6 +4,7 @@ CREATE TABLE notes(
     mimeContentType VARCHAR(255) DEFAULT NULL,
     content BLOB DEFAULT NULL,
     courseID VARCHAR(255) NOT NULL,
+    type VARCHAR(255) NOT NULL,
     PRIMARY KEY(id)
 );
 
