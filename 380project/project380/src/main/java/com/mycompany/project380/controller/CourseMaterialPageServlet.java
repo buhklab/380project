@@ -4,25 +4,21 @@
  */
 package com.mycompany.project380.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
  * @author TCH
  */
-@WebServlet(name = "CourseMaterialPageServlet", urlPatterns = {"/CourseMaterialPage"})
-public class CourseMaterialPageServlet extends HttpServlet {
+//@WebServlet(name = "CourseMaterialPageServlet", urlPatterns = {"/CourseMaterialPage"})
+@Controller
+public class CourseMaterialPageServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        String LectureNo = request.getParameter("LectureNo");
+    @GetMapping("/CourseMaterialPage")
+    public String login(@RequestParam("LectureNo") String LectureNo, HttpServletRequest request) {
 
         switch (LectureNo) {
             case "1":
@@ -35,12 +31,9 @@ public class CourseMaterialPageServlet extends HttpServlet {
                 request.setAttribute("LectureName", "Lecture3(JSP)");
                 break;
             default:
-                request.getRequestDispatcher("/WEB-INF/jsp/view/course.jsp")
-                        .forward(request, response);
-                break;
+                return "course";
         }
 
-        request.getRequestDispatcher("/WEB-INF/jsp/view/listLecture.jsp")
-                .forward(request, response);
+        return "listLecture";
     }
 }
