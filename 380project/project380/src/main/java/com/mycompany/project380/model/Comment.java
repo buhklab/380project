@@ -81,6 +81,11 @@ public class Comment implements Serializable {
         this.courseID = courseID;
     }
 
+    @Override
+    public String toString() {
+        return "Comment{" + "id=" + id + ", content=" + content + ", courseID=" + courseID + ", lectureID=" + lectureID + ", username=" + username + '}';
+    }
+
 
 
 }

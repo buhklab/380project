@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.project380.controller;
 
 import com.mycompany.project380.model.Comment;
@@ -24,46 +20,54 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author a1742
  */
-
 @Controller
 @RequestMapping("/course")
 public class CoursePageController {
+
     @Autowired
     private CourseService courseService;
     @Autowired
     private LectureService lecService;
     @Autowired
     private CommentService cmtService;
-    
+
     Course currentCourse = new Course();
-    
+
     @GetMapping({"", "/courselist"})
     public String list(ModelMap model) {
         model.addAttribute("courseDB", courseService.getCourses());
+        List<Comment> allCmts = new ArrayList<>();
         return "courselist";
     }
-    
+    @GetMapping("/Lecture")
+    public String showLecture(@RequestParam("lid") String lID, ModelMap model) {
+        Lecture currentLecture = lecService.getLecture(Long.parseLong(lID));
+        List<Comment> cmts = new ArrayList<>();
+        cmts = cmtService.getCommentBylID(lID);
+        model.addAttribute("currentLec", currentLecture);
+        model.addAttribute("cmtDB", cmts);
+        return "showLecMaterial";
+    }
+
     @GetMapping("/listLecture")
-    public String listLecture(@RequestParam("courseID") String cID, ModelMap model){
+    public String listLecture(@RequestParam("courseID") String cID, ModelMap model) {
         List<Course> allCourses = new ArrayList<>();
         allCourses = courseService.getCourses();
         List<Lecture> allLectures = new ArrayList<>();
         allLectures = lecService.getLectures();
         List<Lecture> lectures = new ArrayList<>();
-        List<Comment> allCmts = new ArrayList<>();
-        allCmts = cmtService.getComments();
-        
+
         List<Note> lecNote = new ArrayList<>();
         List<Note> tutNote = new ArrayList<>();
- 
-        for(Course c : allCourses){
-            if(c.getCourseId() == Long.parseLong(cID) ){
+
+        for (Course c : allCourses) {
+            if (c.getCourseId() == Long.parseLong(cID)) {
                 currentCourse = c;
                 break;
             }
         }
-        for(Lecture l : allLectures){
-            if(l.getCourseID() == Long.parseLong(cID)){
+        for (Lecture l : allLectures) {
+            if (l.getCourseID() == Long.parseLong(cID)) {
                 lectures.add(l);
             }
         }

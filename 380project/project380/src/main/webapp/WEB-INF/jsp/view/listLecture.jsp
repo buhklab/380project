@@ -20,13 +20,18 @@
             </c:when>
             <c:otherwise>
                 <c:forEach items="${lecture}" var="lec">
-                    <p>
-                        ${lec.title}, 
-                        Note: 
-                        <a href="<c:url value="/course/view/${lec.lectureID}" />">
+                                     <%--%><p>
+                        <a href="<c:url value="/course/material/${lec.lectureID}" />">
                             <c:out value="${lec.title}" /></a>
                     </p>
-
+                    --%>
+                      <p>  
+                        <a href="<c:url value="/course/Lecture">
+                               <c:param name="lid" value="${lec.lectureID}" />
+                           </c:url>">${lec.title}
+                        </a>
+                        <br />
+                    </p>
                 </c:forEach>
             </c:otherwise>
         </c:choose>

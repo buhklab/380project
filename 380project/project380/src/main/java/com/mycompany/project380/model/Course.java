@@ -52,4 +52,9 @@ public class Course implements Serializable {
         this.title = title;
     }
 
+    @Override
+    public String toString() {
+        return "Course{" + "courseID=" + courseID + ", title=" + title + ", code=" + code + '}';
+    }
+
 }

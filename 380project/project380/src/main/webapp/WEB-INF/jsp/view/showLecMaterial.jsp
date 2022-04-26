@@ -12,6 +12,21 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>${currentLec.title} Material and Comment </h1>
+        
+        
+        
+        
+        
+                <c:choose>
+            <c:when test="${fn:length(cmtDB) == 0}">
+                <i>There are no comment in the system.</i>
+            </c:when>
+            <c:otherwise>
+                <c:forEach items="${cmtDB}" var="c">
+                        <p>${c.toString()}</p>
+                </c:forEach>
+            </c:otherwise>
+        </c:choose> 
     </body>
 </html>

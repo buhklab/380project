@@ -24,6 +24,11 @@ public class CommentService {
     private CommentRepository cmtRepo;
     
     @Transactional
+    public List<Comment> getCommentBylID(String lid){
+        return cmtRepo.findByLectureID(lid);
+    }
+    
+    @Transactional
     public List<Comment> getComments(){
         return cmtRepo.findAll();
     }
