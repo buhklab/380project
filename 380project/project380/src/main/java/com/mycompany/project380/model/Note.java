@@ -31,20 +31,34 @@ public class Note implements Serializable {
 
     @Column(name = "courseID")
     private String courseID;
+    
+    @Column(name = "lectureID")
+    private String lectureID;
 
     private String type;
 
     public Note() {
     }
 
-    public Note(long id, String title, String mimeContentType, byte[] content, String courseID, String type) {
+    public Note(long id, String title, String mimeContentType, byte[] content, String courseID, String lectureID, String type) {
         this.id = id;
         this.title = title;
         this.mimeContentType = mimeContentType;
         this.content = content;
         this.courseID = courseID;
+        this.lectureID = lectureID;
         this.type = type;
     }
+
+    public String getLectureID() {
+        return lectureID;
+    }
+
+    public void setLectureID(String lectureID) {
+        this.lectureID = lectureID;
+    }
+
+
 
     public String getType() {
         return type;

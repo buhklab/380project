@@ -12,6 +12,8 @@ CREATE TABLE comments (
     id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     content VARCHAR(255) DEFAULT NULL,
     courseID VARCHAR(255) NOT NULL,
+    lectureID VARCHAR(255) NOT NULL,
+    username VARCHAR(50) NOT NULL,
     PRIMARY KEY(id)
 );
 
@@ -50,4 +52,13 @@ CREATE TABLE answer (
     questionID INTEGER NOT NULL,
     PRIMARY KEY(answerId),
     FOREIGN KEY (questionID) REFERENCES question (questionId)
+);
+
+CREATE TABLE lecture(
+    lectureID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    title VARCHAR(255) DEFAULT NULL,
+    courseID INTEGER NOT NULL,
+    PRIMARY KEY(lectureID),
+    FOREIGN KEY (courseID) REFERENCES course (courseID)
+
 );

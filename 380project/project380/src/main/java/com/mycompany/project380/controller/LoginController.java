@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class LoginController {
-// for index
+    
     @GetMapping
     public String index() {
         return "course";

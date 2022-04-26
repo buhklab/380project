@@ -22,15 +22,40 @@ public class Comment implements Serializable {
 
     @Column(name = "courseID")
     private String courseID;
-
+    
+    private String lectureID;
+    
+    private String username;
+    
     public Comment() {
     }
 
-    public Comment(long id, String content, String courseID) {
+    public Comment(long id, String content, String courseID, String lectureID, String username) {
         this.id = id;
         this.content = content;
         this.courseID = courseID;
+        this.lectureID = lectureID;
+        this.username = username;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+
+    public String getLectureID() {
+        return lectureID;
+    }
+
+    public void setLectureID(String lectureID) {
+        this.lectureID = lectureID;
+    }
+
+
 
     public long getId() {
         return id;

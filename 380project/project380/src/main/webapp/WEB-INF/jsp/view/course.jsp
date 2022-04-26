@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 2022/4/20, 下午 09:56:20
-    Author     : TCH
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

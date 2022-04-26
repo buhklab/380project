@@ -13,7 +13,7 @@ public class Course implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long CourseId;
+    private long courseID;
 
     private String title;
 
@@ -23,7 +23,7 @@ public class Course implements Serializable {
     }
 
     public Course(long CourseId, String title, String code) {
-        this.CourseId = CourseId;
+        this.courseID = CourseId;
         this.title = title;
         this.code = code;
     }
@@ -37,11 +37,11 @@ public class Course implements Serializable {
     }
 
     public long getCourseId() {
-        return CourseId;
+        return courseID;
     }
 
     public void setCourseId(long CourseId) {
-        this.CourseId = CourseId;
+        this.courseID = CourseId;
     }
 
     public String getTitle() {

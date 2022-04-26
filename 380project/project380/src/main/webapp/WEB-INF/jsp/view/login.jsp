@@ -12,7 +12,7 @@
         <title>Online Course Website</title>
     </head>
     <body>
-        <h2>Online Course Website -- Login Page</h2>
+        <h2>Online Course Website -- Login Page2</h2>
         <form action="applogin" method="POST">
             <label for="username">Username:</label><br/>
             <input type="text" id="username" name="username" /><br/><br/>
