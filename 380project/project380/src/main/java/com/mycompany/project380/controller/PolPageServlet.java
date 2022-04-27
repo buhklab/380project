@@ -25,7 +25,6 @@ public class PolPageServlet extends HttpServlet {
 
     @GetMapping("/McPoll")
     public String login(@RequestParam("MC") String MC, HttpServletRequest request) {
-
         switch (MC) {
             case "1":
                 request.setAttribute("Question", "Q1");
