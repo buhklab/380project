@@ -57,6 +57,11 @@ public class Lecture {
     public void setCourseID(long CourseID) {
         this.CourseID = CourseID;
     }
+
+    @Override
+    public String toString() {
+        return "Lecture{" + "lectureID=" + lectureID + ", title=" + title + ", CourseID=" + CourseID + '}';
+    }
     
     
 }

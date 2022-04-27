@@ -20,16 +20,40 @@
                 <i>There are no course in the system.</i>
             </c:when>
             <c:otherwise>
-                <c:forEach items="${courseDB}" var="course">
-                    <p>
-                        Course Code ${course.code}:
-                        <a href="<c:url value="/course/listLecture">
-                               <c:param name="courseID" value="${course.courseId}" />
-                           </c:url>">${course.title}
-                        </a>
-                        <br />
-                    </p>
-                </c:forEach>
+                <dl>
+                    <c:forEach items="${courseDB}" var="course">
+                        <br/>
+                        <dt>
+                            Course Code ${course.code}:
+                            <a href="<c:url value="/course/listLecture">
+                                   <c:param name="courseID" value="${course.courseId}" />
+                               </c:url>">${course.title}
+                            </a>
+                            <br />
+                        </dt>
+                        <dd>
+                            <c:choose>
+                                <c:when test="${fn:length(lectureDB) == 0}">
+                                    <i>there are no lecture in ${course.title}
+                                    </c:when>
+                                    <c:otherwise>
+                                        <br/>
+                                        <c:forEach items="${lectureDB}" var = "lec">
+                                            <c:choose>
+                                            <c:when test="${lec.courseID eq course.courseId}">
+                                                <dd>
+                                                    <i>${lec.title}</i>
+                                                </dd>
+                                            </c:when>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </c:otherwise>
+                                    </c:choose>
+                        </dd>
+
+                        <br/>
+                    </c:forEach>
+                </dl>
             </c:otherwise>
         </c:choose>
     </body>

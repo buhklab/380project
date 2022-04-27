@@ -20,10 +20,12 @@ public class Comment implements Serializable {
 
     private String content;
 
-    @Column(name = "courseID")
+//    @Column(name = "courseID")
     private String courseID;
     
     private String lectureID;
+    
+    private String questionID;
     
     private String username;
     

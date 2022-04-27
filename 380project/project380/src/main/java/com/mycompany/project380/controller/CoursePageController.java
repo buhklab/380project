@@ -36,7 +36,7 @@ public class CoursePageController {
     @GetMapping({"", "/courselist"})
     public String list(ModelMap model) {
         model.addAttribute("courseDB", courseService.getCourses());
-        List<Comment> allCmts = new ArrayList<>();
+        model.addAttribute("lectureDB", lecService.getLectures());
         return "courselist";
     }
     @GetMapping("/Lecture")
@@ -46,7 +46,7 @@ public class CoursePageController {
         cmts = cmtService.getCommentBylID(lID);
         model.addAttribute("currentLec", currentLecture);
         model.addAttribute("cmtDB", cmts);
-        return "showLecMaterial";
+        return "showlecdetail";
     }
 
     @GetMapping("/listLecture")

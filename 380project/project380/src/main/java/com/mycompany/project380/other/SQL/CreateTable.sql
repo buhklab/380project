@@ -14,6 +14,7 @@ CREATE TABLE comments (
     courseID VARCHAR(255) NOT NULL,
     lectureID VARCHAR(255) NOT NULL,
     username VARCHAR(50) NOT NULL,
+    questionID  VARCHAR(50) NOT NULL,
     PRIMARY KEY(id)
 );
 
