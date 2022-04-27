@@ -22,17 +22,17 @@ public class LoginController {
     private CourseService courseService;
     @Autowired
     private LectureService lecService;
-//    @GetMapping
-//    public String index() {
-//        return "course";
-//    }
-
     @GetMapping
-    public String index(ModelMap model) {
-        model.addAttribute("courseDB", courseService.getCourses());
-        model.addAttribute("lectureDB", lecService.getLectures());
-        return "courselist";
+    public String index() {
+        return "course";
     }
+//
+//    @GetMapping
+//    public String index(ModelMap model) {
+//        model.addAttribute("courseDB", courseService.getCourses());
+//        model.addAttribute("lectureDB", lecService.getLectures());
+//        return "courselist";
+//    }
 
     @GetMapping("/applogin")
     public String login() {
