@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class LoginController {
-    // for index usage
+    //for index usage
     @Autowired
     private CourseService courseService;
     @Autowired
