@@ -4,7 +4,8 @@ CREATE TABLE notes(
     mimeContentType VARCHAR(255) DEFAULT NULL,
     content BLOB DEFAULT NULL,
     courseID VARCHAR(255) NOT NULL,
-    type VARCHAR(255) NOT NULL,
+    lectureID VARCHAR(255) NOT NULL,
+    type VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY(id)
 );
 
@@ -46,10 +47,17 @@ CREATE TABLE question (
     FOREIGN KEY (courseID) REFERENCES course (courseID)
 );
 
+-- CREATE TABLE answer (
+--     answerId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+--     content VARCHAR(255) NOT NULL,
+--     voted INTEGER NOT NULL,
+--     questionID INTEGER NOT NULL,
+--     PRIMARY KEY(answerId),
+--     FOREIGN KEY (questionID) REFERENCES question (questionId)
+-- );
 CREATE TABLE answer (
     answerId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     content VARCHAR(255) NOT NULL,
-    voted INTEGER NOT NULL,
     questionID INTEGER NOT NULL,
     PRIMARY KEY(answerId),
     FOREIGN KEY (questionID) REFERENCES question (questionId)
@@ -62,4 +70,11 @@ CREATE TABLE lecture(
     PRIMARY KEY(lectureID),
     FOREIGN KEY (courseID) REFERENCES course (courseID)
 
+);
+
+CREATE TABLE votedAnswer(
+    votedId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    answerID VARCHAR(255) NOT NULL,
+    username INTEGER NOT NULL,
+    PRIMARY KEY(votedId)
 );

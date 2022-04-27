@@ -107,4 +107,12 @@ public class Note implements Serializable {
     public void setCourseID(String courseID) {
         this.courseID = courseID;
     }
+
+    @Override
+    public String toString() {
+        return "Note{" + "id=" + id + ", title=" + title + ", mimeContentType=" + mimeContentType + ", content=" + content + ", courseID=" + courseID + ", lectureID=" + lectureID + ", type=" + type + '}';
+    }
+    
+    
+    
 }

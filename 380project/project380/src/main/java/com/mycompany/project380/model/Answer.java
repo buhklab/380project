@@ -21,7 +21,7 @@ public class Answer implements Serializable {
     @Column(name = "questionID")
     private String questionID;
     
-    private int voted;
+//    private int voted;
 
     public Answer() {
     }
@@ -52,18 +52,18 @@ public class Answer implements Serializable {
         this.questionID = questionID;
     }
 
-    public int getVoted() {
-        return voted;
-    }
+//    public int getVoted() {
+//        return voted;
+//    }
+//
+//    public void setVoted(int voted) {
+//        this.voted = voted;
+//    }
 
-    public void setVoted(int voted) {
-        this.voted = voted;
-    }
-
-    public Answer(long id, String content, String questionID, int voted) {
+    public Answer(long id, String content, String questionID) {
         this.answerId = id;
         this.content = content;
         this.questionID = questionID;
-        this.voted = voted;
+//        this.voted = voted;
     }
 }

@@ -4,7 +4,11 @@
  */
 package com.mycompany.project380.controller;
 
+import com.mycompany.project380.service.CourseService;
+import com.mycompany.project380.service.LectureService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -13,10 +17,21 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class LoginController {
-    
+
+    @Autowired
+    private CourseService courseService;
+    @Autowired
+    private LectureService lecService;
+//    @GetMapping
+//    public String index() {
+//        return "course";
+//    }
+
     @GetMapping
-    public String index() {
-        return "course";
+    public String index(ModelMap model) {
+        model.addAttribute("courseDB", courseService.getCourses());
+        model.addAttribute("lectureDB", lecService.getLectures());
+        return "courselist";
     }
 
     @GetMapping("/applogin")

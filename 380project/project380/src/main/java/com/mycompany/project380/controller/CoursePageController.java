@@ -7,6 +7,7 @@ import com.mycompany.project380.model.Note;
 import com.mycompany.project380.service.CommentService;
 import com.mycompany.project380.service.CourseService;
 import com.mycompany.project380.service.LectureService;
+import com.mycompany.project380.service.NoteService;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,9 @@ public class CoursePageController {
     private LectureService lecService;
     @Autowired
     private CommentService cmtService;
-
+    @Autowired
+    private NoteService noteService;
+    
     Course currentCourse = new Course();
 
     @GetMapping({"", "/courselist"})
@@ -44,6 +47,8 @@ public class CoursePageController {
         Lecture currentLecture = lecService.getLecture(Long.parseLong(lID));
         List<Comment> cmts = new ArrayList<>();
         cmts = cmtService.getCommentBylID(lID);
+        List<Note> notes = noteService.getNoteBylID(lID);
+        model.addAttribute("noteDB", notes);
         model.addAttribute("currentLec", currentLecture);
         model.addAttribute("cmtDB", cmts);
         return "showlecdetail";
