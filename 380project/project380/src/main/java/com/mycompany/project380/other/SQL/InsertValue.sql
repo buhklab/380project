@@ -1,11 +1,22 @@
 INSERT INTO users VALUES ('admin', '{noop}admin');
 INSERT INTO users VALUES ('user', '{noop}user');
 INSERT INTO users VALUES ('deve', '{noop}deve');
-
+INSERT INTO users VALUES ('Carlo', '{noop}Carlo');
+INSERT INTO users VALUES ('Samuel', '{noop}Samuel');
+INSERT INTO users VALUES ('Jerry', '{noop}Jerry');
+INSERT INTO users VALUES ('Tsang', '{noop}Samuel');
 INSERT INTO userRoles (username, role) VALUES ('admin', 'ROLE_ADMIN');
 INSERT INTO userRoles (username, role) VALUES ('admin', 'ROLE_USER');
 INSERT INTO userRoles (username, role) VALUES ('user', 'ROLE_USER');
 INSERT INTO userRoles (username, role) VALUES ('deve', 'ROLE_USER');
+INSERT INTO userRoles (username, role) VALUES ('Carlo', 'ROLE_LECTURER');
+INSERT INTO userRoles (username, role) VALUES ('Carlo', 'ROLE_USER');
+INSERT INTO userRoles (username, role) VALUES ('Samuel', 'ROLE_LECTURER');
+INSERT INTO userRoles (username, role) VALUES ('Samuel', 'ROLE_USER');
+INSERT INTO userRoles (username, role) VALUES ('Jerry', 'ROLE_LECTURER');
+INSERT INTO userRoles (username, role) VALUES ('Jerry', 'ROLE_USER');
+INSERT INTO userRoles (username, role) VALUES ('Tsang', 'ROLE_LECTURER');
+INSERT INTO userRoles (username, role) VALUES ('Tsang', 'ROLE_USER');
 
 INSERT INTO course (code, title)VALUES ('COMPS380F', 'Web Application : Design And Development');
 INSERT INTO course (code, title)VALUES ('COMPS382F', 'Data Mining');

@@ -4,13 +4,8 @@
         <title>Customer Support</title>
     </head>
     <body>
-        <c:url var="logoutUrl" value="/applogout"/>
-        <form action="${logoutUrl}" method="post">
-            <input type="submit" value="Log out" />
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
         <h2>Course List</h2>
-        <security:authorize access="hasRole('Lecturer')">    
+        <security:authorize access="hasRole('ROLE_LECTURER')">    
             <a href="<c:url value="/student" />">Manage Material and Student</a><br /><br />
         </security:authorize>
         <a href="<c:url value="/material/create" />">Create a note</a><br /><br />

@@ -12,7 +12,13 @@
         <title>Online Course Website</title>
     </head>
     <body>
-        <h2>Online Course Website -- Login Page2</h2>
+        <c:if test="${param.error != null}">
+            <p>Login failed.</p>
+        </c:if>
+        <c:if test="${param.logout != null}">
+            <p>You have logged out.</p>
+        </c:if>
+        <h2>Online Course Website -- Login Page</h2>
         <form action="applogin" method="POST">
             <label for="username">Username:</label><br/>
             <input type="text" id="username" name="username" /><br/><br/>
