@@ -62,7 +62,7 @@ public class CoursePageController {
         return "courselist";
     }
 
-    @GetMapping("/Lecture")
+    @GetMapping("/view/Lecture")
     public String showLecture(@RequestParam("lid") String lID, ModelMap model) {
         Lecture currentLecture = lecService.getLecture(Long.parseLong(lID));
         List<Comment> cmts = new ArrayList<>();
@@ -74,7 +74,7 @@ public class CoursePageController {
         return "showlecdetail";
     }
 
-    @GetMapping("/listLecture")
+    @GetMapping("/view/listLecture")
     public String listLecture(@RequestParam("courseID") String cID, ModelMap model) {
         List<Course> allCourses = new ArrayList<>();
         allCourses = courseService.getCourses();

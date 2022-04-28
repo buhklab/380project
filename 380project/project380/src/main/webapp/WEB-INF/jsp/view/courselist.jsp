@@ -24,7 +24,7 @@
                         <br/>
                         <dt>
                             Course Code ${course.code}:
-                            <a href="<c:url value="/course/listLecture">
+                            <a href="<c:url value="/course/view/listLecture">
                                    <c:param name="courseID" value="${course.courseId}" />
                                </c:url>">${course.title}
                             </a>
@@ -60,7 +60,7 @@
             </c:when>
             <c:otherwise>
                 <c:forEach items="${questionDB}" var = "data">
-                    <a href="<c:url value="/McPoll">
+                    <a href="<c:url value="/view/McPoll">
                                    <c:param name="MC" value="${data.questionId}" />
                                </c:url>">${data.query}
                             </a>

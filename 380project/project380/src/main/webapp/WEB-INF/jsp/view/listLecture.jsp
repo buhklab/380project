@@ -26,7 +26,7 @@
                     </p>
                     --%>
                       <p>  
-                        <a href="<c:url value="/course/Lecture">
+                        <a href="<c:url value="/course/view/Lecture">
                                <c:param name="lid" value="${lec.lectureID}" />
                            </c:url>">${lec.title}
                         </a>

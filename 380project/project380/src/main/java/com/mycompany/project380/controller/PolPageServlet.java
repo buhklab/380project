@@ -38,7 +38,7 @@ public class PolPageServlet extends HttpServlet {
     @Autowired
     private CommentService cmtService;
 
-    @GetMapping("/McPoll")
+    @GetMapping("/view/McPoll")
     public String showAns(@RequestParam("MC") String qID, ModelMap model) {
         Question question = questionService.getQuestion(Long.parseLong(qID));
         List<Comment> cmts =  cmtService.getCommentByQID(qID);

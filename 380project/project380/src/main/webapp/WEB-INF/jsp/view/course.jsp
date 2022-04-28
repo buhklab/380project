@@ -19,7 +19,7 @@
                     <br /><br />
                 </td>
                 <td>
-                    <a href="<c:url value="/McPoll">
+                    <a href="<c:url value="/view/McPoll">
                         <c:param name="MC" value="1" />
                         </c:url>">Q1
                     </a>
@@ -35,7 +35,7 @@
                     <br /><br />
                 </td>
                 <td>
-                    <a href="<c:url value="/McPoll">
+                    <a href="<c:url value="/view/McPoll">
                         <c:param name="MC" value="2" />
                         </c:url>">Q2
                     </a>
@@ -51,7 +51,7 @@
                     <br /><br />
                 </td>
                 <td>
-                    <a href="<c:url value="/McPoll">
+                    <a href="<c:url value="/view/McPoll">
                         <c:param name="MC" value="3" />
                         </c:url>">Q3</a><br /><br />
                 </td>
