@@ -1,15 +1,22 @@
 package com.mycompany.project380.controller;
 
+import com.mycompany.project380.model.Answer;
 import com.mycompany.project380.model.Comment;
 import com.mycompany.project380.model.Course;
 import com.mycompany.project380.model.Lecture;
 import com.mycompany.project380.model.Note;
+import com.mycompany.project380.model.Question;
+import com.mycompany.project380.model.VotedAnswer;
+import com.mycompany.project380.service.AnswerService;
 import com.mycompany.project380.service.CommentService;
 import com.mycompany.project380.service.CourseService;
 import com.mycompany.project380.service.LectureService;
 import com.mycompany.project380.service.NoteService;
+import com.mycompany.project380.service.QuestionService;
+import com.mycompany.project380.service.VotedAnswerService;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,15 +40,28 @@ public class CoursePageController {
     private CommentService cmtService;
     @Autowired
     private NoteService noteService;
-    
+    @Autowired
+    private QuestionService questionService;
+    @Autowired
+    private AnswerService ansService;
+    @Autowired
+    private VotedAnswerService vansService;
+
     Course currentCourse = new Course();
 
     @GetMapping({"", "/courselist"})
     public String list(ModelMap model) {
         model.addAttribute("courseDB", courseService.getCourses());
         model.addAttribute("lectureDB", lecService.getLectures());
+        List<Question> questions = questionService.getQuestions();
+        List<Answer> answers = ansService.getAnswers();
+        List<VotedAnswer> vans = vansService.getVotedAnswers();
+        model.addAttribute("questionDB",questions);
+        model.addAttribute("answerDB",answers);
+        model.addAttribute("vanswerDB",vans);
         return "courselist";
     }
+
     @GetMapping("/Lecture")
     public String showLecture(@RequestParam("lid") String lID, ModelMap model) {
         Lecture currentLecture = lecService.getLecture(Long.parseLong(lID));
@@ -62,9 +82,8 @@ public class CoursePageController {
         allLectures = lecService.getLectures();
         List<Lecture> lectures = new ArrayList<>();
 
-        List<Note> lecNote = new ArrayList<>();
+        List < Note > lecNote = new ArrayList<>();
         List<Note> tutNote = new ArrayList<>();
-
         for (Course c : allCourses) {
             if (c.getCourseId() == Long.parseLong(cID)) {
                 currentCourse = c;
@@ -80,4 +99,7 @@ public class CoursePageController {
         model.addAttribute("lecture", lectures);
         return "listLecture";
     }
+
+    // ----------------------------------------------------------------------------------------------------------------//
+    
 }

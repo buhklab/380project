@@ -12,7 +12,7 @@
         <title>380 project></title>
     </head>
     <body>
-        <h1>Course Name:  ${currentCourse.title}</h1>
+        <h1>This is  ${currentCourse.title}</h1>
         <p>Lectures : </p>
         <c:choose>
             <c:when test="${fn:length(lecture) == 0}">

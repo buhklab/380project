@@ -58,4 +58,10 @@ public class Question implements Serializable {
     public void setCourseID(String courseID) {
         this.courseID = courseID;
     }
+
+    @Override
+    public String toString() {
+        return "Question{" + "questionId=" + questionId + ", query=" + query + ", courseID=" + courseID + '}';
+    }
+    
 }

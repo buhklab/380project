@@ -32,13 +32,16 @@ public class Comment implements Serializable {
     public Comment() {
     }
 
-    public Comment(long id, String content, String courseID, String lectureID, String username) {
+    public Comment(long id, String content, String courseID, String lectureID, String questionID, String username) {
         this.id = id;
         this.content = content;
         this.courseID = courseID;
         this.lectureID = lectureID;
+        this.questionID = questionID;
         this.username = username;
     }
+    
+    
 
     public String getUsername() {
         return username;

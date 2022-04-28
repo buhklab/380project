@@ -21,7 +21,11 @@ public class AnswerService {
     
     @Resource
     private AnswerRepository ansRepo;
-
+    
+    @Transactional
+    public List<Answer> getAnswerByQID(String Qid){
+        return ansRepo.findByQuestionID(Qid);
+    }
     @Transactional
     public List<Answer> getAnswers(){
         return ansRepo.findAll();

@@ -10,8 +10,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-
 public interface CommentRepository extends JpaRepository<Comment, Long> {
-    @Query("SELECT new Comment(c.id, c.content, c.courseID, c.lectureID, c.username) FROM Comment c WHERE c.lectureID LIKE %:lectureID%")
+
+    @Query("SELECT new Comment(c.id, c.content, c.courseID, c.lectureID, c.questionID, c.username) FROM Comment c WHERE c.lectureID LIKE %:lectureID%")
     public List<Comment> findByLectureID(@Param("lectureID") String lectureID);
+
+    @Query("SELECT new Comment(c.id, c.content, c.courseID, c.lectureID, c.questionID, c.username) FROM Comment c WHERE c.questionID LIKE %:questionID%")
+    public List<Comment> findByQuestionID(@Param("questionID") String questionID);
 }

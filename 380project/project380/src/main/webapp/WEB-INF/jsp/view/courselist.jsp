@@ -9,9 +9,8 @@
             <input type="submit" value="Log out" />
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-
         <h2>Course List</h2>
-        <security:authorize access="hasRole('Lecture')">    
+        <security:authorize access="hasRole('Lecturer')">    
             <a href="<c:url value="/student" />">Manage Material and Student</a><br /><br />
         </security:authorize>
         <a href="<c:url value="/material/create" />">Create a note</a><br /><br />
@@ -31,29 +30,45 @@
                             </a>
                             <br />
                         </dt>
-                        <dd>
-                            <c:choose>
-                                <c:when test="${fn:length(lectureDB) == 0}">
-                                    <i>there are no lecture in ${course.title}
-                                    </c:when>
-                                    <c:otherwise>
-                                        <br/>
-                                        <c:forEach items="${lectureDB}" var = "lec">
-                                            <c:choose>
-                                            <c:when test="${lec.courseID eq course.courseId}">
-                                                <dd>
-                                                    <i>${lec.title}</i>
-                                                </dd>
-                                            </c:when>
-                                            </c:choose>
-                                        </c:forEach>
-                                    </c:otherwise>
-                                    </c:choose>
-                        </dd>
 
-                        <br/>
+                        <c:choose>
+                            <c:when test="${fn:length(lectureDB) == 0}">
+                                <dd>there are no lecture in ${course.title}</dd>
+                            </c:when>
+                            <c:otherwise>
+                                <br/>
+                                <c:forEach items="${lectureDB}" var = "lec">
+                                    <c:choose>
+                                        <c:when test="${lec.courseID eq course.courseId}">
+                                            <dd>
+                                                ${lec.title}
+                                            </dd>
+                                        </c:when>
+                                    </c:choose>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
                     </c:forEach>
                 </dl>
             </c:otherwise>
         </c:choose>
+        <p>MC poll</p>
+        <br/>
+        <c:choose>
+            <c:when test="${fn:length(questionDB) == 0}">
+                <i>There are no MC in the system.</i>
+            </c:when>
+            <c:otherwise>
+                <c:forEach items="${questionDB}" var = "data">
+                    <a href="<c:url value="/McPoll">
+                                   <c:param name="MC" value="${data.questionId}" />
+                               </c:url>">${data.query}
+                            </a>
+                            <br/>
+                </c:forEach>
+            </c:otherwise>
+        </c:choose>
+
+
+
     </body>

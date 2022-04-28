@@ -16,23 +16,27 @@ import org.springframework.stereotype.Service;
  *
  * @author a1742
  */
-
 @Service
 public class CommentService {
-    
+
     @Resource
     private CommentRepository cmtRepo;
-    
+
     @Transactional
-    public List<Comment> getCommentBylID(String lid){
-        return cmtRepo.findByLectureID(lid);
+    public List<Comment> getCommentBylID(String cid) {
+        return cmtRepo.findByLectureID(cid);
     }
-    
+
     @Transactional
-    public List<Comment> getComments(){
+    public List<Comment> getCommentByQID(String qid) {
+        return cmtRepo.findByQuestionID(qid);
+    }
+
+    @Transactional
+    public List<Comment> getComments() {
         return cmtRepo.findAll();
     }
-    
+
     @Transactional
     public Comment getComment(long id) {
         return cmtRepo.findById(id).orElse(null);
