@@ -40,6 +40,18 @@ public class Comment implements Serializable {
         this.questionID = questionID;
         this.username = username;
     }
+
+    public String getQuestionID() {
+        return questionID;
+    }
+
+    public void setCourseID(String courseID) {
+        this.courseID = courseID;
+    }
+
+    public void setQuestionID(String questionID) {
+        this.questionID = questionID;
+    }
     
     
 

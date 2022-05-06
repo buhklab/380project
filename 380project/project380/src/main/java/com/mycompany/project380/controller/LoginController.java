@@ -8,7 +8,6 @@ import com.mycompany.project380.service.CourseService;
 import com.mycompany.project380.service.LectureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -17,14 +16,17 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class LoginController {
+
     //for index usage
     @Autowired
     private CourseService courseService;
     @Autowired
     private LectureService lecService;
+
     @GetMapping
     public String index() {
-        return "course";
+        //return "course";
+        return "redirect:/course";
     }
 //
 //    @GetMapping

@@ -12,15 +12,13 @@
         <title>380 project></title>
     </head>
     <body>
-        <h1>This is  ${currentCourse.title}</h1>
-        <a href="<c:url value="/course/view/studentslist">
-           </c:url>">list of registered students
+        <h1>This is lecturers list</h1>
+        <a href="<c:url value="/AddLecturer">
+           </c:url>">Add lecturer
         </a>
           <br />
-        <a href="<c:url value="/CourseMaterialPage">
-           </c:url>">list of lecturers
-        </a>
-        <p>Lectures : </p>
+     
+        <p>Lecturers : </p>
         <c:choose>
             <c:when test="${fn:length(lecture) == 0}">
                 <i>There are no lecture in the system.</i>

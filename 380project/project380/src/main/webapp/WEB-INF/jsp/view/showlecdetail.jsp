@@ -13,6 +13,14 @@
     </head>
     <body>
         <h1>${currentLec.title} Material and Comment </h1>
+
+        <a href="<c:url value="/course/create/comment/Lecture">
+               <c:param name="courseID" value="${currentCourseID}" />
+               <c:param name="lid" value="${currentLec.lectureID}" />
+           </c:url>">${lec.title}
+            Create Comment
+        </a><br /><br />
+
         <c:choose>
             <c:when test="${fn:length(cmtDB) == 0}">
                 <i>There are no comment in this Lecture.</i>
@@ -21,6 +29,15 @@
                 <b>Comment Wall</b>
                 <c:forEach items="${cmtDB}" var="c">
                     <p>${c.username} : ${c.content}</p>
+                    <security:authorize access="hasRole('ADMIN') or
+                                        principal.username=='${c.username}'">
+                        [<a href="<c:url value="/course/comment/edit" />">Edit</a>]
+                    </security:authorize>
+                    <security:authorize access="hasRole('ADMIN') or
+                                        principal.username=='${c.username}'">        
+                        [<a href="<c:url value="/course/comment/delete?courseID=${c.courseID}&lid=${c.lectureID}&commentID=${c.id}" />">Delete</a>]
+                    </security:authorize>
+                    <br /><br />
                 </c:forEach>
             </c:otherwise>
         </c:choose> 
@@ -31,7 +48,7 @@
             <c:otherwise>
                 <ul>
                     <c:forEach items="${noteDB}" var="n">
-<!--                        add hyperlink here-->
+                        <!--                        add hyperlink here-->
                         <li>><i>Note : ${n.title}</i></li>
                         </c:forEach>
                 </ul>
