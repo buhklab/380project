@@ -133,7 +133,6 @@ public class CoursePageController {
     public String listStudent() {
         return "liststudent";
     }
-
     /*
     @GetMapping("/view/AddStudent")
     public String addStudent() {

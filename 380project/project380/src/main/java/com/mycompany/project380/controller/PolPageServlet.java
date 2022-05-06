@@ -20,6 +20,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -56,6 +58,40 @@ public class PolPageServlet extends HttpServlet {
         model.addAttribute("answerDB", answers);
         model.addAttribute("total", total);
         return "pol";
+    }
+    @GetMapping("/create/addvote")
+    public ModelAndView creaate(){
+        return new ModelAndView("addvote","ticketForm",new Form());
+    }
+    public class Form{
+        private String subject;
+        private String body;
+        private List<MultipartFile> attachments;
+
+        // Getters and Setters of subject, body, attachments
+        public String getSubject() {
+            return subject;
+        }
+
+        public void setSubject(String subject) {
+            this.subject = subject;
+        }
+
+        public String getBody() {
+            return body;
+        }
+
+        public void setBody(String body) {
+            this.body = body;
+        }
+
+        public List<MultipartFile> getAttachments() {
+            return attachments;
+        }
+
+        public void setAttachments(List<MultipartFile> attachments) {
+            this.attachments = attachments;
+        }
     }
     // hashmap will occure error but i don know y, so use this method to pass value to jsp
     public static class Answerd {
