@@ -27,6 +27,12 @@ public class User implements Serializable {
 
     private String password;
 
+    private String fullname;
+
+    private String phonenbr;
+
+    private String address;
+
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserRole> roles = new ArrayList<>();
@@ -34,9 +40,12 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String username, String password, String[] roles) {
+    public User(String username, String password, String fullname, String phonenbr, String address, String[] roles) {
         this.username = username;
         this.password = "{noop}" + password;
+        this.fullname =  fullname;
+        this.phonenbr = phonenbr;
+        this.address =  address;
         for (String role : roles) {
             this.roles.add(new UserRole(this, role));
         }
@@ -57,6 +66,30 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getPhonenbr() {
+        return phonenbr;
+    }
+
+    public void setPhonenbr(String phonenbr) {
+        this.phonenbr = phonenbr;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public List<UserRole> getRoles() {

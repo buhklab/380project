@@ -24,7 +24,7 @@ public class LoginController {
     private LectureService lecService;
     @GetMapping
     public String index() {
-        return "course";
+        return "redirect:/course";
     }
 //
 //    @GetMapping

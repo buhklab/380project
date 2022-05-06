@@ -1,8 +1,3 @@
-<%-- 
-    Document   : listLecture
-    Created on : 2022/4/20, 下午 11:48:25
-    Author     : TCH
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,15 +7,13 @@
         <title>380 project></title>
     </head>
     <body>
-        <h1>This is  ${currentCourse.title}</h1>
-        <a href="<c:url value="/course/view/studentslist">
-           </c:url>">list of registered students
+        <h1>This is the list of students</h1>
+        <a href="<c:url value="/AddStudent">
+           </c:url>">Add student
         </a>
-        <br />
-        <a href="<c:url value="/CourseMaterialPage">
-           </c:url>">list of lecturers
-        </a>
-        <p>Lectures : </p>
+          <br />
+
+        <p>Students : </p>
         <c:choose>
             <c:when test="${fn:length(lecture) == 0}">
                 <i>There are no lecture in the system.</i>

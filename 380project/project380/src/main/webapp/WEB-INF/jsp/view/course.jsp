@@ -8,6 +8,8 @@
     <body>
         <h1>This is course:S380F</h1>
         Hi User!
+                <a href="<c:url value="/create/signup" />">Create Account</a><br /><br />
+
         <table>
             <tr><th>Lecture</th><th>MC</th></tr>
             <tr>

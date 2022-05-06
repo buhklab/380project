@@ -60,6 +60,14 @@ public class Comment implements Serializable {
         this.lectureID = lectureID;
     }
 
+    public String getQuestionID() {
+        return questionID;
+    }
+
+    public void setQuestionID(String questionID) {
+        this.questionID = questionID;
+    }
+
 
 
     public long getId() {

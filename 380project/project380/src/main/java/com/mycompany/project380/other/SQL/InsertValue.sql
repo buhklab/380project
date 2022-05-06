@@ -1,10 +1,10 @@
-INSERT INTO users VALUES ('admin', '{noop}admin');
-INSERT INTO users VALUES ('user', '{noop}user');
-INSERT INTO users VALUES ('deve', '{noop}deve');
-INSERT INTO users VALUES ('Carlo', '{noop}Carlo');
-INSERT INTO users VALUES ('Samuel', '{noop}Samuel');
-INSERT INTO users VALUES ('Jerry', '{noop}Jerry');
-INSERT INTO users VALUES ('Tsang', '{noop}Samuel');
+INSERT INTO users VALUES ('admin', '{noop}admin', 'Chan Tai Wan', '1234567', 'ShaTin');
+INSERT INTO users VALUES ('user', '{noop}user', 'Chan Wan', '1234567', 'Central');
+INSERT INTO users VALUES ('deve', '{noop}deve', 'Chan Tai', '1234567', 'TaiPo');
+INSERT INTO users VALUES ('Carlo', '{noop}Carlo', 'Chan CTai', '1234567', 'TaiPo');
+INSERT INTO users VALUES ('Samuel', '{noop}Samuel', 'Chan STai', '1234567', 'TaiPo');
+INSERT INTO users VALUES ('Jerry', '{noop}Jerry', 'Chan JTai', '1234567', 'TaiPo');
+INSERT INTO users VALUES ('Tsang', '{noop}Samuel', 'Chan TTai', '1234567', 'TaiPo');
 INSERT INTO userRoles (username, role) VALUES ('admin', 'ROLE_ADMIN');
 INSERT INTO userRoles (username, role) VALUES ('admin', 'ROLE_USER');
 INSERT INTO userRoles (username, role) VALUES ('user', 'ROLE_USER');
