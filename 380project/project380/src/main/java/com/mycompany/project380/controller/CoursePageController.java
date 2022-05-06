@@ -175,4 +175,5 @@ public class CoursePageController {
             this.attachments = attachments;
         }
     }
+
 }

@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>This is  ${currentCourse.title}</h1>
-        <a href="<c:url value="/course/view/studentslist">
+        <a href="<c:url value="/create/list">
            </c:url>">list of registered students
         </a>
         <br />
