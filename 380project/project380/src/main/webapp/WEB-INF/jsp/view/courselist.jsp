@@ -9,7 +9,6 @@
         <security:authorize access="hasRole('ROLE_LECTURER')">    
             <a href="<c:url value="/student" />">Manage Material and Student</a><br /><br />
         </security:authorize>
-        <a href="<c:url value="/material/create" />">Create a note</a><br /><br />
         <c:choose>
             <c:when test="${fn:length(courseDB) == 0}">
                 <i>There are no course in the system.</i>
