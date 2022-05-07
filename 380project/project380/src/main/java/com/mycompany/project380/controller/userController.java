@@ -161,14 +161,6 @@ UserService userService= new UserService();
     @PostMapping("/user/edit/{username}")
     public View editUser(@PathVariable("username") String username, Form form, Principal principal, HttpServletRequest request)
             throws IOException, UserNotFound {
-//        User user = userRepo.findById(username).orElse(null);
-//        user.setUsername(form.getUsername());
-//        user.setFullname(form.getFullname());
-//        user.setPhonenbr(form.getPhonenbr());
-//        user.setAddress(form.getAddress());
-//        user.setPassword(form.getPassword());
-//        user.setRoles( form.getRoles());
-//        userRepo.save(user);
         
         User user = new User(form.getUsername(), form.getPassword(), form.getFullname(), form.getPhonenbr(), form.getAddress(), form.getRoles());
         userRepo.save(user);
