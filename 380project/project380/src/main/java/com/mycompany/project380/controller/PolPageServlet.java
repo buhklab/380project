@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -62,6 +63,11 @@ public class PolPageServlet extends HttpServlet {
     @GetMapping("/create/addvote")
     public ModelAndView creaate(){
         return new ModelAndView("addvote","ticketForm",new Form());
+    }
+    
+    @PostMapping("/create/addvote")
+    public String post(){
+        return "redirect:/course";
     }
     public class Form{
         private String subject;
