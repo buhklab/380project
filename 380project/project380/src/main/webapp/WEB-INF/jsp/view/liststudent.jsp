@@ -16,8 +16,8 @@
             <th>Username</th><th>Password</th><th>Roles</th><th>Action</th>
         </tr>
         <c:forEach items="${AllUsers}" var="user">
-        <tr>
-            <td>${user.username}</td><td>${user.password}</td>
+        <tr>        
+                <td>${user.username}</td><td>${user.password}</td>
             <td>
                 <c:forEach items="${user.roles}" var="role" varStatus="status">
                     <c:if test="${!status.first}">, </c:if>
@@ -26,7 +26,7 @@
             </td>
             <td>
             [<a href="<c:url value="/create/user/delete?username=${user.username}" />">Delete</a>]
-             [<a href="<c:url value="/create/user/edit?username=${user.username}" />">Edit</a>]
+              [<a href="<c:url value="/create/user/edit/${user.username}" />">Edit</a>]
             </td>
         </tr>
         </c:forEach>

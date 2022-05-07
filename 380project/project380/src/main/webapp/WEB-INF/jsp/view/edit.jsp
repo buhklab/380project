@@ -24,7 +24,7 @@
                 <form:checkbox path="roles" value="ROLE_ADMIN" />Lecturer
 
             <br /><br />
-            <input type="submit" value="Create User"/>
+            <input type="submit" value="Edit User"/>
         </form:form>
 </body>
 </html>

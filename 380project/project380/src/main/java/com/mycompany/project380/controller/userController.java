@@ -5,16 +5,17 @@
 package com.mycompany.project380.controller;
 
 import com.mycompany.project380.dao.UserRepository;
+import com.mycompany.project380.service.UserService;
 import com.mycompany.project380.model.User;
-import com.mycompany.project380.model.UserRole;
+import com.mycompany.project380.exception.UserNotFound;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +33,7 @@ public class userController {
 
     @Resource
     UserRepository userRepo;
-
+UserService userService= new UserService();
     @GetMapping({"", "/list"})
     public String list(ModelMap model) {
         model.addAttribute("AllUsers", userRepo.findAll());
@@ -134,8 +135,8 @@ public class userController {
 
     }
 
-    @GetMapping("/user/edit")
-    public ModelAndView showEdit(@RequestParam("username") String username,
+    @GetMapping("/user/edit/{username}")
+    public ModelAndView showEdit(@PathVariable("username") String username,
             Principal principal, HttpServletRequest request) {
         User user = userRepo.findById(username).orElse(null);;
         if (user == null /*|| (!request.isUserInRole("ROLE_ADMIN")&& !principal.getName().equals(user.getUsername()))*/) {
@@ -151,7 +152,7 @@ public class userController {
         userForm.setPhonenbr(user.getPhonenbr());
         userForm.setPassword(user.getPassword());
         userForm.setAddress(user.getAddress());
-/*
+        /*
         List<UserRole> UserRoleList = user.getRoles();
         String[] array = new String[UserRoleList.size()];
         int index = 0;
@@ -161,26 +162,31 @@ public class userController {
         }
 
         userForm.setRoles(array);
-*/
+ */        
         modelAndView.addObject("userForm", userForm);
 
         return modelAndView;
     }
-    /*
-    @PostMapping("/edit/{ticketId}")
-    public String editUser(@PathVariable("ticketId") long ticketId, Form form,
-            Principal principal, HttpServletRequest request)
-            throws IOException, TicketNotFound {
-        Ticket ticket = ticketService.getTicket(ticketId);
-        if (ticket == null
-                || (!request.isUserInRole("ROLE_ADMIN")
-                && !principal.getName().equals(ticket.getCustomerName()))) {
-            return "redirect:/ticket/list";
+
+    @PostMapping("/user/edit/{username}")
+    public View editUser(@PathVariable("username") String username, Form form, Principal principal, HttpServletRequest request)
+            throws IOException, UserNotFound {
+        User user = userRepo.findById(username).orElse(null);
+        if (user == null/* || (!request.isUserInRole("ROLE_ADMIN") && !principal.getName().equals(ticket.getCustomerName()))*/) {
+            return new RedirectView("/course", true);
         }
 
-        ticketService.updateTicket(ticketId, form.getSubject(),
-                form.getBody(), form.getAttachments());
-        return "redirect:/ticket/view/" + ticketId;
+     
+        user.setUsername(form.getUsername());
+        user.setFullname(form.getFullname());
+        user.setPhonenbr(form.getPhonenbr());
+        user.setAddress(form.getAddress());
+        user.setPassword(form.getPassword());
+        user.setRoles( user.getRoles());
+        userRepo.save(user);
+        //userService.updateUser(username,form.getUsername(), form.getFullname(), form.getPhonenbr(), form.getAddress(), form.getPassword(), user.getRoles());
+
+        return new RedirectView("/create/list", true);
     }
-     */
+
 }
