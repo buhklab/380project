@@ -9,6 +9,7 @@ import com.mycompany.project380.model.UserRole;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -22,7 +23,15 @@ public class UserService implements UserDetailsService {
 
     @Resource
     UserRepository UserRepo;
-
+    @Transactional
+    public List<com.mycompany.project380.model.User> getUsers(){
+        return UserRepo.findAll();
+    }
+    
+    @Transactional
+    public com.mycompany.project380.model.User getUser(String name) {
+        return UserRepo.findById(name).orElse(null);
+    }
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {

@@ -9,6 +9,9 @@
         <security:authorize access="hasRole('ROLE_LECTURER')">    
             <a href="<c:url value="/student" />">Manage Material and Student</a><br /><br />
         </security:authorize>
+        <security:authorize access="hasRole('ROLE_ADMIN')">    
+            <a href="<c:url value="/view/votedAnswerHistory" />">View Voted History</a><br /><br />
+        </security:authorize>
         <c:choose>
             <c:when test="${fn:length(courseDB) == 0}">
                 <i>There are no course in the system.</i>

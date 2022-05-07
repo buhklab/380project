@@ -24,10 +24,10 @@
         <b:property name="username" value="nbuser" />
         <b:property name="password" value="nbuser" />
     </b:bean> 
-    
     <http>
         <intercept-url pattern="/view/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN', 'ROLE_LECTURER')" />
         <intercept-url pattern="/course/view/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN', 'ROLE_LECTURER')" />
+        <intercept-url pattern="/view/votedAnswerHistory" access="hasAnyRole('ROLE_ADMIN')" />
         <form-login login-page="/applogin" login-processing-url="/applogin"
                     authentication-failure-url="/applogin?error" />
         <logout logout-url="/applogout" logout-success-url="/applogin?logout"
