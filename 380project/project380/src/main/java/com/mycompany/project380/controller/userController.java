@@ -5,13 +5,20 @@
 package com.mycompany.project380.controller;
 
 import com.mycompany.project380.dao.UserRepository;
+import com.mycompany.project380.service.UserService;
 import com.mycompany.project380.model.User;
+import com.mycompany.project380.exception.UserNotFound;
 import java.io.IOException;
+import java.security.Principal;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
@@ -26,12 +33,12 @@ public class userController {
 
     @Resource
     UserRepository userRepo;
-
-//    @GetMapping({"", "/list"})
-//    public String list(ModelMap model) {
-//        model.addAttribute("ticketUsers", userRepo.findAll());
-//        return "listUser";
-//    }
+UserService userService= new UserService();
+    @GetMapping({"", "/list"})
+    public String list(ModelMap model) {
+        model.addAttribute("AllUsers", userRepo.findAll());
+        return "liststudent";
+    }
 
     public static class Form {
 
@@ -90,7 +97,6 @@ public class userController {
         public void setRoles(String[] roles) {
             this.roles = roles;
         }
-
     }
 
     @GetMapping("/signup")
@@ -100,8 +106,7 @@ public class userController {
 
     @PostMapping("/signup")
     public View create(Form form) throws IOException {
-        User user = new User(form.getUsername(),
-                form.getPassword(), form.getFullname(), form.getPhonenbr(), form.getAddress(), form.getRoles());
+        User user = new User(form.getUsername(), form.getPassword(), form.getFullname(), form.getPhonenbr(), form.getAddress(), form.getRoles());
         userRepo.save(user);
         return new RedirectView("/course", true);
     }
@@ -111,5 +116,65 @@ public class userController {
 //        userRepo.delete(userRepo.findById(username).orElse(null));
 //        return new RedirectView("/user/list", true);
 //    }
+    @GetMapping("/user")
+    public ModelAndView createUser() {
+        return new ModelAndView("addUser", "User", new Form());
+    }
+
+    @PostMapping("/user")
+    public View createUser(Form form) throws IOException {
+        User user = new User(form.getUsername(), form.getPassword(), form.getFullname(), form.getPhonenbr(), form.getAddress(), form.getRoles());
+        userRepo.save(user);
+        return new RedirectView("/course", true);
+    }
+
+    @GetMapping("/user/delete")
+    public View deleteUser(@RequestParam("username") String username) {
+        userRepo.delete(userRepo.findById(username).orElse(null));
+        return new RedirectView("/create/list", true);
+
+    }
+
+    @GetMapping("/user/edit/{username}")
+    public ModelAndView showEdit(@PathVariable("username") String username,
+            Principal principal, HttpServletRequest request) {
+        User user = userRepo.findById(username).orElse(null);;
+        if (user == null /*|| (!request.isUserInRole("ROLE_ADMIN")&& !principal.getName().equals(user.getUsername()))*/) {
+            return new ModelAndView(new RedirectView("/course", true));
+        }
+
+        ModelAndView modelAndView = new ModelAndView("edit");
+        modelAndView.addObject("user", user);
+
+        Form userForm = new Form();
+        userForm.setUsername(user.getUsername());
+        userForm.setFullname(user.getFullname());
+        userForm.setPhonenbr(user.getPhonenbr());
+        userForm.setPassword(user.getPassword());
+        userForm.setAddress(user.getAddress());
+
+        modelAndView.addObject("userForm", userForm);
+
+        return modelAndView;
+    }
+
+    @PostMapping("/user/edit/{username}")
+    public View editUser(@PathVariable("username") String username, Form form, Principal principal, HttpServletRequest request)
+            throws IOException, UserNotFound {
+//        User user = userRepo.findById(username).orElse(null);
+//        user.setUsername(form.getUsername());
+//        user.setFullname(form.getFullname());
+//        user.setPhonenbr(form.getPhonenbr());
+//        user.setAddress(form.getAddress());
+//        user.setPassword(form.getPassword());
+//        user.setRoles( form.getRoles());
+//        userRepo.save(user);
+        
+        User user = new User(form.getUsername(), form.getPassword(), form.getFullname(), form.getPhonenbr(), form.getAddress(), form.getRoles());
+        userRepo.save(user);
+        //userService.updateUser(username,form.getUsername(), form.getFullname(), form.getPhonenbr(), form.getAddress(), form.getPassword(), user.getRoles());
+
+        return new RedirectView("/create/list", true);
+    }
 
 }
