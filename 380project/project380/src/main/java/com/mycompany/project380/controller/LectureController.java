@@ -109,14 +109,14 @@ public class LectureController {
             return new DownloadingView(material.getName(),
                     material.getMimeContentType(), material.getContents());
         }
-        return new RedirectView("/lecture", true);
+        return new RedirectView("/course", true);
     }
 
-    @GetMapping("/lecture/{lectureId}/delete/{material:.+}")
+    @GetMapping("/{lectureId}/delete/{material:.+}")
     public String deleteAttachment(@PathVariable("lectureId") long lectureId,
             @PathVariable("material") String name) throws MaterialNotFound {
         lectureService.deleteMaterial(lectureId, name);
-        return "redirect:/lecture/edit/" + lectureId;
+        return "redirect:/course/view/edit/" + lectureId;
     }
 
     @GetMapping("/edit/{lectureId}")
@@ -125,7 +125,7 @@ public class LectureController {
         Lecture lecture = lectureService.getLecture(lectureId);
         if (lecture == null
                 || (!request.isUserInRole("ROLE_LECTURER"))) {
-            return new ModelAndView(new RedirectView("/lecture", true));
+            return new ModelAndView(new RedirectView("/course", true));
         }
         ModelAndView modelAndView = new ModelAndView("editLecture");// jsp name
         modelAndView.addObject("lecture", lecture);
@@ -147,7 +147,7 @@ public class LectureController {
         }
         lectureService.updateLecture(lectureId, form.getTitle(),
                 form.getCourseId(), form.getMaterials());
-        return "redirect:/lecture/view/" + lectureId;
+        return "redirect:/course/view/edit/" + lectureId;
     }
 
     @GetMapping("/delete/{lectureId}")

@@ -87,6 +87,6 @@
                 <label id="label">  </label><br/>
             </div>
         </form:form>
-        <a href="<c:url value="/course" />">Return to Lecture Details</a>
+        <a href="<c:url value="/course" />">Return to Course Page</a>
     </body>
 </html> 

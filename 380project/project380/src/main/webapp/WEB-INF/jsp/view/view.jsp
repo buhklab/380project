@@ -21,6 +21,6 @@
                     <c:out value="${material.name}" /></a>
             </c:forEach><br /><br />
         </c:if>
-        <a href="<c:url value="/course" />">Return to Lecture Details</a>
+        <a href="<c:url value="/course" />">Return to Course Page</a>
     </body>
 </html>
