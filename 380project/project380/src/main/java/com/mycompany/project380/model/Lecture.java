@@ -4,11 +4,18 @@
  */
 package com.mycompany.project380.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -17,6 +24,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "lecture")
 public class Lecture {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long lectureID;
@@ -25,14 +33,12 @@ public class Lecture {
 
     private long CourseID;
 
-    public Lecture(long lectureID, String title, long CourseID) {
-        this.lectureID = lectureID;
-        this.title = title;
-        this.CourseID = CourseID;
-    }
-
-    public Lecture() {
-    }
+    @OneToMany(mappedBy = "lecture", fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL, orphanRemoval = true)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<Material> material = new ArrayList<>();
+    
+    // getters and setters of all properties
 
     public long getLectureID() {
         return lectureID;
@@ -58,10 +64,22 @@ public class Lecture {
         this.CourseID = CourseID;
     }
 
-    @Override
-    public String toString() {
-        return "Lecture{" + "lectureID=" + lectureID + ", title=" + title + ", CourseID=" + CourseID + '}';
+    public List<Material> getMaterial() {
+        return material;
     }
-    
-    
+
+    public void setMaterial(List<Material> material) {
+        this.material = material;
+    }
+
+
+    public void deleteMaterial(Material material) {
+        material.setLecture(null);
+        this.material.remove(material);
+    }
+
+//    @Override
+//    public String toString() {
+//        return "Lecture{" + "lectureID=" + lectureID + ", title=" + title + ", CourseID=" + CourseID + '}';
+//    }
 }

@@ -5,6 +5,7 @@ import com.mycompany.project380.model.Answer;
 import com.mycompany.project380.model.Comment;
 import com.mycompany.project380.model.Course;
 import com.mycompany.project380.model.Lecture;
+import com.mycompany.project380.model.Material;
 import com.mycompany.project380.model.Note;
 import com.mycompany.project380.model.Question;
 import com.mycompany.project380.model.VotedAnswer;
@@ -12,6 +13,7 @@ import com.mycompany.project380.service.AnswerService;
 import com.mycompany.project380.service.CommentService;
 import com.mycompany.project380.service.CourseService;
 import com.mycompany.project380.service.LectureService;
+import com.mycompany.project380.service.MaterialService;
 import com.mycompany.project380.service.NoteService;
 import com.mycompany.project380.service.QuestionService;
 import com.mycompany.project380.service.VotedAnswerService;
@@ -44,13 +46,17 @@ public class CoursePageController {
     @Autowired
     private CommentService cmtService;
     @Autowired
-    private NoteService noteService;
+    private NoteService noteService;  
+    @Autowired
+    private MaterialService mateService;
     @Autowired
     private QuestionService questionService;
     @Autowired
     private AnswerService ansService;
     @Autowired
     private VotedAnswerService vansService;
+    @Autowired
+    private MaterialService mService;
 
     Course currentCourse = new Course();
 
@@ -72,8 +78,10 @@ public class CoursePageController {
         Lecture currentLecture = lecService.getLecture(Long.parseLong(lID));
         List<Comment> cmts = new ArrayList<>();
         cmts = cmtService.getCommentBylID(lID);
-        List<Note> notes = noteService.getNoteBylID(lID);
-        model.addAttribute("noteDB", notes);
+        List<Material> material = mService.getMaterials();
+        
+        //edit here
+        model.addAttribute("materialDB", material);
         model.addAttribute("currentLec", currentLecture);
         model.addAttribute("cmtDB", cmts);
         return "showlecdetail";
@@ -86,9 +94,9 @@ public class CoursePageController {
         List<Lecture> allLectures = new ArrayList<>();
         allLectures = lecService.getLectures();
         List<Lecture> lectures = new ArrayList<>();
-
-        List< Note> lecNote = new ArrayList<>();
-        List<Note> tutNote = new ArrayList<>();
+//
+//        List< Note> lecNote = new ArrayList<>();
+//        List<Note> tutNote = new ArrayList<>();
         for (Course c : allCourses) {
             if (c.getCourseId() == Long.parseLong(cID)) {
                 currentCourse = c;
@@ -133,48 +141,6 @@ public class CoursePageController {
     public String listStudent() {
         return "liststudent";
     }
-    /*
-    @GetMapping("/view/AddStudent")
-    public String addStudent() {
-        Student s = new Student();
-        String studentID = Long.toString(q.get());
-        long commentID = cmtService.createComment(principal.getName(), questionid, form.getBody(), cid, lid);
-        return "redirect:/course/view/Lecture?courseID=" + cid + "&lid=" + lid;
-        return "liststudent";
-    }
-     */
-//    public static class Form {
-//
-//        private String subject;
-//        private String body;
-//        private List<MultipartFile> attachments;
-//
-//        // Getters and Setters of subject, body, attachments
-//        public String getSubject() {
-//            return subject;
-//        }
-//
-//        public void setSubject(String subject) {
-//            this.subject = subject;
-//        }
-//
-//        public String getBody() {
-//            return body;
-//        }
-//
-//        public void setBody(String body) {
-//            this.body = body;
-//        }
-//
-//        public List<MultipartFile> getAttachments() {
-//            return attachments;
-//        }
-//
-//        public void setAttachments(List<MultipartFile> attachments) {
-//            this.attachments = attachments;
-//        }
-//    }
-
 
     /*
     @GetMapping("/view/AddStudent")
@@ -217,5 +183,4 @@ public class CoursePageController {
             this.attachments = attachments;
         }
     }
-
 }
