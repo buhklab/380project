@@ -60,9 +60,9 @@
         <h2>Lecture #${lecture.lectureID}</h2>
         <form:form method="POST" enctype="multipart/form-data" modelAttribute="lectureForm"> 
             <form:label path="title">Title</form:label><br/>
-            <form:input type="text" path="title" disable = "true" /><br/><br/>
+            <form:input type="text" path="title" disabled = "true" /><br/><br/>
             <form:label path="courseId">Course ID</form:label><br/>
-            <form:input type = "text" path="courseId" disable = "true"/><br/><br/>
+            <form:input type = "text" path="courseId" disabled = "true"/><br/><br/>
             <c:if test="${fn:length(lecture.material) > 0}">
                 <b>Materials:</b><br/>
                 <ul>

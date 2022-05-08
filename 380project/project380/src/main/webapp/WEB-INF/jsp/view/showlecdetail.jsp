@@ -38,6 +38,9 @@
                 <b>Comment Wall</b>
                 <c:forEach items="${cmtDB}" var="c">
                     <p>${c.username} : ${c.content}</p>
+                    <security:authorize access="hasRole('ADMIN') or hasRole('LECTURER')">
+                        [<a href="<c:url value="/course/comment/delete?courseID=${c.courseID}&lid=${c.lectureID}&commentID=${c.id}" />">Delete</a>]
+                    </security:authorize>
                 </c:forEach>
             </c:otherwise>
         </c:choose> 
