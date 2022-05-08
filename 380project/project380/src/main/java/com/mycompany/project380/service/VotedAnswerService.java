@@ -42,8 +42,10 @@ public class VotedAnswerService {
         return check==null;
     }
     @Transactional
-    public void updateVotedAnswer(String answerID,VotedAnswer v){
+    public void updateVotedAnswer(String answerID, VotedAnswer v, String username, String questionID) {
         v.setAnswerID(answerID);
+        v.setQuestionId(questionID);
+        v.setUsername(username);
         VotedAnswer savedVotedAnswer = votedRepo.save(v);
     }
 

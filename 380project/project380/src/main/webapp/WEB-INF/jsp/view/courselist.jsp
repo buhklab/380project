@@ -6,10 +6,10 @@
     <body>
         <h2>Course List</h2>
         <a href="<c:url value="/create/signup" />">Create Account</a><br /><br />
-        <security:authorize access="hasRole('ROLE_LECTURER')">    
+        <security:authorize access="hasRole('LECTURER')">    
             <a href="<c:url value="/create" />">Manage Material and Student</a><br /><br />
         </security:authorize>
-        <security:authorize access="hasRole('ROLE_ADMIN')">    
+        <security:authorize access="hasRole('LECTURER')">    
             <a href="<c:url value="/view/votedAnswerHistory" />">View Voted History</a><br /><br />
         </security:authorize>
         <security:authorize access="hasRole('LECTURER')">

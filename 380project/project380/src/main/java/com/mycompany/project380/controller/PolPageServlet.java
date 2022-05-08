@@ -52,10 +52,12 @@ public class PolPageServlet extends HttpServlet {
         cmtService.delete(cid);
         return "redirect:/view/McPoll?MC=" + qid;
     }
+
     @GetMapping("/create/comment/pol")
     public ModelAndView create2(@RequestParam("MC") long qid) {
         return new ModelAndView("add", "ticketForm", new CoursePageController.Form());
     }
+
     @PostMapping("/create/comment/pol")
     public String create2(CoursePageController.Form form, Principal principal, @RequestParam("MC") String qid, ModelMap model) throws IOException {
         Course c = new Course();
@@ -67,6 +69,7 @@ public class PolPageServlet extends HttpServlet {
 
         return "redirect:/view/McPoll?MC=" + qid;
     }
+
     @GetMapping("/view/McPoll")
     public String showAns(@RequestParam("MC") String qID, ModelMap model) {
         Question question = questionService.getQuestion(Long.parseLong(qID));
@@ -100,7 +103,7 @@ public class PolPageServlet extends HttpServlet {
         String votedAnswerID = Long.toString(v.getVotedId());
         List<VotedAnswer> before = vansService.getVotedAnswersWithUsernameAndQuestionID(principal.getName(), qID);
         if (!before.isEmpty()) {
-            vansService.updateVotedAnswer(form.getBody(), before.get(0));
+            vansService.updateVotedAnswer(form.getBody(), before.get(0), principal.getName(), qID);
         } //if(vansService.checkAnsweredBefore(qID, principal.getName())){
         //vansService.updateVotedAnswer(form.getBody(), principal.getName(), qID);
         else {

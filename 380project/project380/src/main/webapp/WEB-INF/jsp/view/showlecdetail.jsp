@@ -13,6 +13,14 @@
     </head>
     <body>
         <h1>${currentLec.title} Material and Comment </h1>
+           <security:authorize access="hasRole('LECTURER')">
+                                    [<a href="<c:url value="/course/view/edit/${currentLec.lectureID}" />">Edit this lecture</a>]
+                                </security:authorize>
+                                <security:authorize access="hasRole('LECTURER')"> 
+                                    [<a href="<c:url value="/course/view/delete/${currentLec.lectureID}" />">Delete this lecture</a>]
+                                </security:authorize>
+                                    <br/>
+                                    <br/>
         <a href="<c:url value="/course/create/comment/Lecture">
                <c:param name="courseID" value="${currentCourseID}" />
                <c:param name="lid" value="${currentLec.lectureID}" />
@@ -31,11 +39,7 @@
                 <c:forEach items="${cmtDB}" var="c">
                     <p>${c.username} : ${c.content}</p>
                     <security:authorize access="hasRole('ADMIN') or
-                                        principal.username=='${c.username}'">
-                        [<a href="<c:url value="/course/comment/edit" />">Edit</a>]
-                    </security:authorize>
-                    <security:authorize access="hasRole('ADMIN') or
-                                        principal.username=='${c.username}'">        
+                                        hasRole('LECTURER')">        
                         [<a href="<c:url value="/course/comment/delete?courseID=${c.courseID}&lid=${c.lectureID}&commentID=${c.id}" />">Delete</a>]
                     </security:authorize>
                     <br /><br />
@@ -54,14 +58,13 @@
                                 <p>
                         <a href="<c:url value="/course/view/info/${currentLec.lectureID}" />">
                             <c:out value="${m.name}" /></a></p>
-                                    <security:authorize access="hasRole('LECTURER')">
+                               <%--     <security:authorize access="hasRole('LECTURER')">
                                     [<a href="<c:url value="/course/view/edit/${currentLec.lectureID}" />">Edit</a>]
                                 </security:authorize>
                                 <security:authorize access="hasRole('LECTURER')"> 
                                     [<a href="<c:url value="/course/view/delete/${currentLec.lectureID}" />">Delete</a>]
-                                </security:authorize>
+                                </security:authorize> --%>
                             </c:when>
-
                         <c:otherwise>
                         </c:otherwise>
                     </c:choose>
