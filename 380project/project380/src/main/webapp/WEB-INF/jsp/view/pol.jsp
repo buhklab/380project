@@ -49,6 +49,7 @@
                <c:param name="MC" value="${qID}" />
            </c:url>">
             <br/>
+            <br/>
             Add / Edit Vote
         </a>
     </body>
