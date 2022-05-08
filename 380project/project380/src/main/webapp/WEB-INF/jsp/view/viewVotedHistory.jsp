@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>View Voting history page</title>
+        <title>Who has voted history page</title>
     </head>
     <body>
         <h1>View History</h1>

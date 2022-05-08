@@ -13,13 +13,12 @@
     </head>
     <body>
         <h1>This is  ${currentCourse.title}</h1>
+        <security:authorize access="hasRole('ADMIN') or hasRole('LECTURER')">  
         <a href="<c:url value="/create/list">
-           </c:url>">list of registered students
+           </c:url>">list of registered students and lecturers
         </a>
+        </security:authorize>
         <br />
-        <a href="<c:url value="/CourseMaterialPage">
-           </c:url>">list of lecturers
-        </a>
         <p>Lectures : </p>
         <c:choose>
             <c:when test="${fn:length(lecture) == 0}">

@@ -36,4 +36,32 @@ public class VotedAnswerService {
     public VotedAnswer getVotedAnswer(long id) {
         return votedRepo.findById(id).orElse(null);
     }
+    @Transactional
+    public boolean checkAnsweredBefore(String questionID,String username){
+        List<VotedAnswer> check = votedRepo.findByQuestionID(questionID,username);
+        return check==null;
+    }
+    @Transactional
+    public void updateVotedAnswer(String answerID,VotedAnswer v){
+        v.setAnswerID(answerID);
+        VotedAnswer savedVotedAnswer = votedRepo.save(v);
+    }
+
+    //public void updateVotedAnswer(String answerid,String username,String questionID){
+    //    votedRepo.setAnswerID(answerid,username, questionID);
+    //}
+    @Transactional
+    public long addVotedAnswer(String answerID, String username,String questionID) {
+        VotedAnswer v = new VotedAnswer();
+        v.setAnswerID(answerID);
+        v.setQuestionId(questionID);
+        v.setUsername(username);
+        VotedAnswer savedVotedAnswer = votedRepo.save(v);
+        return savedVotedAnswer.getVotedId();
+    }
+
+    @Transactional
+    public List<VotedAnswer> getVotedAnswersWithUsernameAndQuestionID(String username,String questionID){
+        return votedRepo.findByQuestionID(questionID, username);
+    }
 }

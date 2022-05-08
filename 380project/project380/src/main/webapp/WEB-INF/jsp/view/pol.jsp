@@ -38,9 +38,9 @@
                 </c:forEach>
             </c:otherwise>
         </c:choose>
-        <a href="<c:url value="/create/addvote">
-               <c:param name="qID" value="${qID}" />
-           </c:url>">${lec.title}
+        <a href="<c:url value="/add/addvote">
+               <c:param name="MC" value="${qID}" />
+           </c:url>">
             addVote
         </a>
     </body>

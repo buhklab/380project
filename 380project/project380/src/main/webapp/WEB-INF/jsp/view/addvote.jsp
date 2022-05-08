@@ -9,13 +9,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Add Vote</title>
     </head>
     <body>
         <form:form method="POST" enctype="multipart/form-data"
-                   modelAttribute="ticketForm">
-            <form:label path="subject">Write Comment</form:label><br />
-            <form:textarea path="body" rows="5" cols="30" /><br /><br />
+                   modelAttribute="addVoteForm">
+            <form:label path="subject">Add answer</form:label><br />
+            <c:forEach var="i" begin="0" end="${fn:length(answerDB)-1}">
+                <form:radiobutton value="${i+1}" path="body"/>${answerDB[i].content}
+                    <br/>
+                </c:forEach>
             <input type="submit" value="Submit"/>
         </form:form>
     </body>

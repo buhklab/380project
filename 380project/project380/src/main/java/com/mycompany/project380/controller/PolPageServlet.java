@@ -12,6 +12,7 @@ import com.mycompany.project380.service.AnswerService;
 import com.mycompany.project380.service.CommentService;
 import com.mycompany.project380.service.QuestionService;
 import com.mycompany.project380.service.VotedAnswerService;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServlet;
@@ -44,7 +45,7 @@ public class PolPageServlet extends HttpServlet {
     @GetMapping("/view/McPoll")
     public String showAns(@RequestParam("MC") String qID, ModelMap model) {
         Question question = questionService.getQuestion(Long.parseLong(qID));
-        List<Comment> cmts =  cmtService.getCommentByQID(qID);
+        List<Comment> cmts = cmtService.getCommentByQID(qID);
         List<Answer> answers = ansService.getAnswerByQID(qID);
         // for checking current user, if need edit
         List<VotedAnswer> vans = vansService.getVotedAnswers();
@@ -53,23 +54,53 @@ public class PolPageServlet extends HttpServlet {
         for (Answer a : answers) {
             total.add(new Answerd(String.valueOf(a.getAnswerId()), String.valueOf(vansService.getVotedAnswerByAnswerID(a.getAnswerId()).size())));
         }
-        
+        model.addAttribute("qID", qID);
         model.addAttribute("question", question);
         model.addAttribute("cmts", cmts);
         model.addAttribute("answerDB", answers);
         model.addAttribute("total", total);
         return "pol";
     }
-    @GetMapping("/create/addvote")
-    public ModelAndView creaate(){
-        return new ModelAndView("addvote","ticketForm",new Form());
+
+    @GetMapping("/add/addvote")
+    public ModelAndView creaate(@RequestParam("MC") String qID, ModelMap model) {
+        List<Answer> answers = ansService.getAnswerByQID(qID);
+        model.addAttribute("answerDB", answers);
+        return new ModelAndView("addvote", "addVoteForm", new Form());
     }
-    
-    @PostMapping("/create/addvote")
-    public String post(){
-        return "redirect:/course";
+
+    @PostMapping("/add/addvote")
+    public String create(Form form, Principal principal, @RequestParam("MC") String qID) {
+        VotedAnswer v = new VotedAnswer();
+        String votedAnswerID = Long.toString(v.getVotedId());
+        List<VotedAnswer> before = vansService.getVotedAnswersWithUsernameAndQuestionID(principal.getName(), qID);
+        if (!before.isEmpty()) {
+            vansService.updateVotedAnswer(form.getBody(), before.get(0));
+        } //if(vansService.checkAnsweredBefore(qID, principal.getName())){
+        //vansService.updateVotedAnswer(form.getBody(), principal.getName(), qID);
+        else {
+            long votedAnswer = vansService.addVotedAnswer(form.getBody(), principal.getName(), qID);
+        }
+        return "redirect:/view/McPoll?MC=" + qID;
     }
-    public class Form{
+//    @PostMapping("/add/addvote")
+//    public String create(Form form, Principal principal,@RequestParam("MC")String qID){
+//        VotedAnswer v = new VotedAnswer();
+//        String votedAnswerID = Long.toString(v.getVotedId());
+//        List<VotedAnswer> before = vansService.getVotedAnswersWithUsernameAndQuestionID(form.getBody(), qID);
+//        if(!before.isEmpty()){
+//            vansService.updateVotedAnswer(form.getBody(),before.get(0));    
+//        }
+//        //if(vansService.checkAnsweredBefore(qID, principal.getName())){
+//            //vansService.updateVotedAnswer(form.getBody(), principal.getName(), qID);
+//        else{
+//            long votedAnswer = vansService.addVotedAnswer(form.getBody(), principal.getName(), qID);
+//        }
+//        return "redirect:/view/McPoll?MC="+qID;
+//    }
+
+    public class Form {
+
         private String subject;
         private String body;
         private List<MultipartFile> attachments;
@@ -99,6 +130,7 @@ public class PolPageServlet extends HttpServlet {
             this.attachments = attachments;
         }
     }
+
     // hashmap will occure error but i don know y, so use this method to pass value to jsp
     public static class Answerd {
 

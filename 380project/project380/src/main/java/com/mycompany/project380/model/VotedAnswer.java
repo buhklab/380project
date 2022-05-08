@@ -27,13 +27,16 @@ public class VotedAnswer implements Serializable{
    
     private String username;
 
+    private String questionID;
+
     public VotedAnswer() {
     }
 
-    public VotedAnswer(long votedId, String answerID, String username) {
+    public VotedAnswer(long votedId,String questionID ,String answerID, String username) {
         this.votedId = votedId;
         this.answerID = answerID;
         this.username = username;
+        this.questionID = questionID;
     }
 
     public long getVotedId() {
@@ -59,6 +62,16 @@ public class VotedAnswer implements Serializable{
     public void setUsername(String username) {
         this.username = username;
     }
-    
+    public String getQuestionID(){
+        return questionID;
+    }
+    public void setQuestionId(String questionID){
+        this.questionID = questionID;
+    }
+
+    @Override
+    public String toString() {
+        return "VotedAnswer{" + "votedId=" + votedId + ", answerID=" + answerID + ", username=" + username + ", questionID=" + questionID + '}';
+    }
     
 }

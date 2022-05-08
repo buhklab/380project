@@ -21,7 +21,7 @@
             
             <form:label path="roles">Roles</form:label><br/>
             <form:checkbox path="roles" value="ROLE_STUDENT" checked = "true" />Student
-                <form:checkbox path="roles" value="ROLE_ADMIN" />Lecturer
+                <form:checkbox path="roles" value="ROLE_LECTURER" />Lecturer
 
             <br /><br />
             <input type="submit" value="Create User"/>

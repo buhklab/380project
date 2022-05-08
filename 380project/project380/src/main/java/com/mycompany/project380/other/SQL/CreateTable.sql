@@ -80,10 +80,10 @@ CREATE TABLE materials (
     PRIMARY KEY (id),
     FOREIGN KEY (lecture_id) REFERENCES lecture(lectureID)
 );
-
 CREATE TABLE votedAnswer(
     votedId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     answerID VARCHAR(255) NOT NULL,
     username VARCHAR(255) NOT NULL,
+    questionID VARCHAR(255) NOT NULL,
     PRIMARY KEY(votedId)
 );
