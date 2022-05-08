@@ -19,7 +19,7 @@
             <form:label path="roles">Roles</form:label><br/>
             <form:checkbox path="roles" value="ROLE_STUDENT" checked = "true" />Student
             <security:authorize access="hasRole('ADMIN')">    
-                <form:checkbox path="roles" value="ROLE_LECTURER" />Lecturer
+                <form:checkbox path="roles" value="ROLE_ADMIN" />Lecturer
             </security:authorize>
             <br /><br />
             <input type="submit" value="Create User"/>
