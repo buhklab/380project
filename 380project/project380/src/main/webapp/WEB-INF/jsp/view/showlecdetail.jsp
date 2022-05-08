@@ -13,13 +13,15 @@
     </head>
     <body>
         <h1>${currentLec.title} Material and Comment </h1>
-        <a href="<c:url value="/course/view/create" />">Create Lecture</a><br /><br />
         <a href="<c:url value="/course/create/comment/Lecture">
                <c:param name="courseID" value="${currentCourseID}" />
                <c:param name="lid" value="${currentLec.lectureID}" />
            </c:url>">${lec.title}
             Create Comment
         </a><br /><br />
+        <security:authorize access="hasRole('LECTURER')">
+            <a href="<c:url value="/course/view/edit/${currentLec.lectureID}" />">Add Material</a>
+        </security:authorize><br><br>
         <c:choose>
             <c:when test="${fn:length(cmtDB) == 0}">
                 <i>There are no comment in this Lecture.</i>
@@ -40,6 +42,7 @@
                 </c:forEach>
             </c:otherwise>
         </c:choose> 
+                    <p><b>Material :</b></p>
         <c:choose>
             <c:when test="${fn:length(materialDB) == 0}">
                 <i>There are no Note in this Lecture</i>

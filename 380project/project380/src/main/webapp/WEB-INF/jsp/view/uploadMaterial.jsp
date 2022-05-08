@@ -66,15 +66,17 @@
             <form:select path="courseId">
             <option path="courseId" value="1">COMPS380F Web Application : Design And Development</option>
             <option path="courseId" value="2">COMPS382F Data Mining</option>
-            <option path="courseId" value="3">COMPS492F Machine Learning</option>            <b>Material</b><br />
-            <div class="file-area" >
-                <input type="file" name="materials" multiple="multiple" id = "fileInput" onchange="show()"/><br /><br />
-                <div class="file-dummy">
-                    <span >Click to select a file, or drag it here</span>
-                </div>
-                <label id="label">  </label><br/>
+            <option path="courseId" value="3">COMPS492F Machine Learning</option>
+        </form:select><br><br>
+        <b>Material</b><br />
+        <div class="file-area" >
+            <input type="file" name="materials" multiple="multiple" id = "fileInput" onchange="show()"/><br /><br />
+            <div class="file-dummy">
+                <span >Click to select a file, or drag it here</span>
             </div>
-            <input type="submit" value="Submit"/>
-        </form:form>
-    </body>
+            <label id="label">  </label><br/>
+        </div>
+        <input type="submit" value="Submit"/>
+    </form:form>
+</body>
 </html>

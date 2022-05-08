@@ -2,15 +2,17 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+ <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <title>Online Course Website</title>
-<security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN', 'ROLE_LECTURER')">    
+<security:authorize access="hasAnyRole('ROLE_STUDENT','ROLE_ADMIN', 'ROLE_LECTURER')">    
     <c:url var="logoutUrl" value="/applogout"/>
     <form action="${logoutUrl}" method="post">
         <input type="submit" value="Log out" />
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
 </security:authorize>
-<security:authorize access="!hasAnyRole('ROLE_USER','ROLE_ADMIN', 'ROLE_LECTURER')">    
+<security:authorize access="!hasAnyRole('ROLE_STUDENT','ROLE_ADMIN', 'ROLE_LECTURER')">    
     <form action="applogin" method="get">
         <input type="submit" value="Login" />
     </form>

@@ -86,6 +86,8 @@
                 </div>
                 <label id="label">  </label><br/>
             </div>
+        <input type="submit" value="Submit"/>
+
         </form:form>
         <a href="<c:url value="/course" />">Return to Course Page</a>
     </body>

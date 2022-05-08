@@ -8,10 +8,14 @@ import com.mycompany.project380.model.Answer;
 import com.mycompany.project380.model.Comment;
 import com.mycompany.project380.model.Question;
 import com.mycompany.project380.model.VotedAnswer;
+import com.mycompany.project380.model.Course;
+import com.mycompany.project380.model.Lecture;
 import com.mycompany.project380.service.AnswerService;
 import com.mycompany.project380.service.CommentService;
 import com.mycompany.project380.service.QuestionService;
 import com.mycompany.project380.service.VotedAnswerService;
+import com.mycompany.project380.exception.CommentNotFound;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +46,27 @@ public class PolPageServlet extends HttpServlet {
     @Autowired
     private CommentService cmtService;
 
+    @GetMapping("/delete/comment/pol")
+    public String deleteComment(@RequestParam("MC") long qid, @RequestParam("CommentID") long cid)
+            throws CommentNotFound {
+        cmtService.delete(cid);
+        return "redirect:/view/McPoll?MC=" + qid;
+    }
+    @GetMapping("/create/comment/pol")
+    public ModelAndView create2(@RequestParam("MC") long qid) {
+        return new ModelAndView("add", "ticketForm", new CoursePageController.Form());
+    }
+    @PostMapping("/create/comment/pol")
+    public String create2(CoursePageController.Form form, Principal principal, @RequestParam("MC") String qid, ModelMap model) throws IOException {
+        Course c = new Course();
+        String cid = Long.toString(c.getCourseId());
+        Lecture l = new Lecture();
+        String lid = Long.toString(l.getLectureID());
+
+        long commentID = cmtService.createComment(principal.getName(), qid, form.getBody(), cid, lid);
+
+        return "redirect:/view/McPoll?MC=" + qid;
+    }
     @GetMapping("/view/McPoll")
     public String showAns(@RequestParam("MC") String qID, ModelMap model) {
         Question question = questionService.getQuestion(Long.parseLong(qID));
@@ -83,6 +108,7 @@ public class PolPageServlet extends HttpServlet {
         }
         return "redirect:/view/McPoll?MC=" + qID;
     }
+
 //    @PostMapping("/add/addvote")
 //    public String create(Form form, Principal principal,@RequestParam("MC")String qID){
 //        VotedAnswer v = new VotedAnswer();
@@ -98,7 +124,6 @@ public class PolPageServlet extends HttpServlet {
 //        }
 //        return "redirect:/view/McPoll?MC="+qID;
 //    }
-
     public class Form {
 
         private String subject;

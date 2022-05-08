@@ -11,7 +11,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-
+        <a href="<c:url value="/create/comment/pol">
+               <c:param name="MC" value="${qID}" />
+           </c:url>">
+            Create Comment
+        </a>
         <h1>Poll</h1>
         The Question is ${question.query}
         <br/>
@@ -35,13 +39,17 @@
                 <b>Comment Wall</b>
                 <c:forEach items="${cmts}" var="c">
                     <p>${c.username} : ${c.content}</p>
+                    <security:authorize access="hasRole('ADMIN') or hasRole('LECTURER')">
+                        [<a href="<c:url value="/delete/comment/pol?MC=${c.questionID}&CommentID=${c.id}" />">Delete</a>]
+                    </security:authorize>
                 </c:forEach>
             </c:otherwise>
         </c:choose>
         <a href="<c:url value="/add/addvote">
                <c:param name="MC" value="${qID}" />
            </c:url>">
-            addVote
+            <br/>
+            Add / Edit Vote
         </a>
     </body>
 </html>

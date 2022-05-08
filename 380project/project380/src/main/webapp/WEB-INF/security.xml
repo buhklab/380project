@@ -30,8 +30,10 @@
         <intercept-url pattern="/view/votedAnswerHistory" access="hasAnyRole('ROLE_ADMIN')" />
         <form-login login-page="/applogin" login-processing-url="/applogin"
                     authentication-failure-url="/applogin?error" />
-        <logout logout-url="/applogout" logout-success-url="/applogin?logout"
+                <logout logout-url="/applogout" logout-success-url="/course"
                 invalidate-session="true" delete-cookies="JSESSIONID" />
+<!--        <logout logout-url="/applogout" logout-success-url="/applogin?logout"
+                invalidate-session="true" delete-cookies="JSESSIONID" />-->
         <remember-me key="onlineCourseSecret" token-validity-seconds="86400" />
     </http>
     
