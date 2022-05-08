@@ -17,7 +17,7 @@
             <form:label path="address">Address</form:label><br/>
             <form:input type="text" path="address" /><br/><br/>
             <form:label path="roles">Roles</form:label><br/>
-            <form:checkbox path="roles" value="ROLE_USER" checked = "true" />Student
+            <form:checkbox path="roles" value="ROLE_STUDENT" checked = "true" />Student
             <security:authorize access="hasRole('ADMIN')">    
                 <form:checkbox path="roles" value="ROLE_LECTURER" />Lecturer
             </security:authorize>

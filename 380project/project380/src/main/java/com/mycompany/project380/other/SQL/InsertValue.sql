@@ -6,17 +6,17 @@ INSERT INTO users VALUES ('Samuel', '{noop}Samuel', 'Chan STai', '1234567', 'Tai
 INSERT INTO users VALUES ('Jerry', '{noop}Jerry', 'Chan JTai', '1234567', 'TaiPo');
 INSERT INTO users VALUES ('Tsang', '{noop}Samuel', 'Chan TTai', '1234567', 'TaiPo');
 INSERT INTO userRoles (username, role) VALUES ('admin', 'ROLE_ADMIN');
-INSERT INTO userRoles (username, role) VALUES ('admin', 'ROLE_USER');
-INSERT INTO userRoles (username, role) VALUES ('user', 'ROLE_USER');
-INSERT INTO userRoles (username, role) VALUES ('deve', 'ROLE_USER');
+INSERT INTO userRoles (username, role) VALUES ('admin', 'ROLE_STUDENT');
+INSERT INTO userRoles (username, role) VALUES ('user', 'ROLE_STUDENT');
+INSERT INTO userRoles (username, role) VALUES ('deve', 'ROLE_STUDENT');
 INSERT INTO userRoles (username, role) VALUES ('Carlo', 'ROLE_LECTURER');
-INSERT INTO userRoles (username, role) VALUES ('Carlo', 'ROLE_USER');
+INSERT INTO userRoles (username, role) VALUES ('Carlo', 'ROLE_STUDENT');
 INSERT INTO userRoles (username, role) VALUES ('Samuel', 'ROLE_LECTURER');
-INSERT INTO userRoles (username, role) VALUES ('Samuel', 'ROLE_USER');
+INSERT INTO userRoles (username, role) VALUES ('Samuel', 'ROLE_STUDENT');
 INSERT INTO userRoles (username, role) VALUES ('Jerry', 'ROLE_LECTURER');
-INSERT INTO userRoles (username, role) VALUES ('Jerry', 'ROLE_USER');
+INSERT INTO userRoles (username, role) VALUES ('Jerry', 'ROLE_STUDENT');
 INSERT INTO userRoles (username, role) VALUES ('Tsang', 'ROLE_LECTURER');
-INSERT INTO userRoles (username, role) VALUES ('Tsang', 'ROLE_USER');
+INSERT INTO userRoles (username, role) VALUES ('Tsang', 'ROLE_STUDENT');
 
 INSERT INTO course (code, title)VALUES ('COMPS380F', 'Web Application : Design And Development');
 INSERT INTO course (code, title)VALUES ('COMPS382F', 'Data Mining');
